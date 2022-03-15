@@ -1,0 +1,82 @@
+mysql -u root -p
+use mydatabase;
+
+1.用户：学号（唯一），姓名，密码
+
+create table user(
+id varchar(20) primary key not null,
+name varchar(20) not null,
+password varchar(20) not null,
+canBorrow boolean not null
+);
+
+insert into user (id , name, password,canBorrow) values ("1", "任哲昆", "1",true);
+insert into user (id , name, password,canBorrow) values ("2", "tom", "2",true);
+insert into user (id , name, password,canBorrow) values ("3", "jime", "3",false);
+
+select * from user;
+
+2.管理员：账号，姓名，密码
+create table manager(
+id varchar(20) primary key not null,
+name varchar(20) not null,
+password varchar(20) not null
+);
+
+insert into manager (id , name, password) values ("0", "管理员", "0");
+insert into manager (id , name, password) values ("b", "管理员b", "b");
+
+select * from manager;
+
+3.图书：书籍编号，书名，作者，价格，总库存，剩余量，出版社，出版年份，分类
+create table book(
+book_id varchar(20) primary key,
+name varchar(20) not null,
+author_name varchar(20),
+price numeric(9,2),
+num int not null,
+stock int not null,
+publisher varchar(20),
+publish_year year,
+type varchar(20) not null
+);
+
+insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) 
+values ("00001", "C++ Primer 中文版", "Stanley B. Lippman", 128, 10, 10, "电子工业出版社", "2013", "计算机类");
+
+insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) 
+values ("00002", "月光落在左手上", "余秀华", 58, 2, 2, "北京十月文艺出版社", "2020", "文学类");
+
+insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) 
+values ("00003", "清代地方政府", "瞿同祖", 78, 5, 5, "新星出版社", "2022", "历史类");
+
+insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) 
+values ("00004", "从格致到科学", "张剑", 66, 8, 8, "中国工人出版社", "2022", "哲学类");
+
+4.借阅信息
+
+create table borrow(
+user_id varchar(20),
+book_id varchar(20),
+borrow_date date,
+return_date date,
+primary key(user_id,book_id),
+foreign key (user_id) references user(id),
+foreign key (book_id) references book(book_id)
+);
+
+
+
+
+
+补充：
+git clone后，需要在LibraryManageByMysqlQt文件夹下新建debug和release文件夹；
+然后，勾上shadow build，并将构建目录选择为LibraryManageByMysqlQt下
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\loginwindow.o
+./release\registerwindow.o
+./release\booksearchwidget.o
+./release\bookborrowinfowidget.o
+./release\qrc_images.o
+./release\moc_mainwindow.o
+./release\moc_loginwindow.o
+./release\moc_registerwindow.o
+./release\moc_booksearchwidget.o
+./release\moc_bookborrowinfowidget.o
+);
