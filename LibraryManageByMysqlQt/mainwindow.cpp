@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     registerwindow = NULL;
     booksearchwidget = NULL;
     bookborrowinfowidget=NULL;
+    usermanagementwidget=NULL;
     people=NULL;
 
     /*** 标题界面UI设计 ***/
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     people->user_ID="";
     people->user_Password="";
     people->user_canBorrow=false;
+    people->booknum=0;
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(SLOT_updatetime()));
@@ -82,6 +84,11 @@ MainWindow::~MainWindow()
     {
         delete bookborrowinfowidget;
         bookborrowinfowidget=NULL;
+    }
+    if(usermanagementwidget!=NULL)
+    {
+        delete usermanagementwidget;
+        usermanagementwidget=NULL;
     }
 }
 
@@ -150,27 +157,33 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
         // 保存用户信息
         people->user_Name=query.value("name").toString();
         people->user_ID=query.value("id").toString();
-        people->user_Password=query.value("password").toString();
-        people->user_canBorrow=query.value("canBorrow").toBool();
-        people->user_Type=isUser?(People::USER):(People::MANAGER);
+        people->user_Password=query.value("password").toString(); 
+        people->user_Type=isUser?(People::USER):(People::MANAGER); 
+        people->user_canBorrow=(people->user_Type == People::USER)?query.value("canBorrow").toBool():false;
+        people->booknum=0;//保持为0。管理员登陆后需要使用时，再赋值使用
 
         emit Signal_loginQuit();// 释放信号，（图书搜索界面）整个界面恢复初始化
 
         //根据登录的用户类型，新建页面
         if(people->user_Type == People::USER)
         {
-            //(借阅情况)界面
+            //(借阅情况界面)
             bookborrowinfowidget = new BookBorrowInfoWidget();
             ui->tabWidget->addTab(bookborrowinfowidget,"借阅情况");
             connect(this,SIGNAL(Signal_bookborrowqueryResult(QVector<BorrowBook>,People*)),bookborrowinfowidget,SLOT(SLOT_bookborrowqueryResult(QVector<BorrowBook>,People*)));
             connect(bookborrowinfowidget,SIGNAL(Signal_bookReturn(QVector<QString>)),this,SLOT(SLOT_bookReturn(QVector<QString>)));
-            bookborrowqueryUpdate(); //（用户借阅情况界面） 恢复显示所有类型
+            bookborrowqueryUpdate(); //（用户借阅情况界面），更新借阅情况页面，初始化显示
         }
         else if(people->user_Type == People::MANAGER)
         {
             //（用户管理界面）
+            usermanagementwidget=new UserManagementWidget();
+            ui->tabWidget->addTab(usermanagementwidget,"用户管理");
+            connect(this,SIGNAL(Signal_usermanagementResult(QVector<People>)),usermanagementwidget,SLOT(SLOT_usermanagementResult(QVector<People>)));
+            usermanagementUpdate();//（用户管理界面），更新用户管理结果页面，初始化显示
 
             //（书籍管理界面）
+
         }
     }
 }
@@ -235,6 +248,7 @@ void MainWindow::on_Button_quitLogin_clicked()
     people->user_ID="";
     people->user_Password="";
     people->user_canBorrow=false;
+    people->booknum=0;
 
     emit Signal_loginQuit();// 释放信号，（图书搜索界面）整个界面恢复初始化
 
@@ -246,11 +260,15 @@ void MainWindow::on_Button_quitLogin_clicked()
         bookborrowinfowidget=NULL;
         ui->tabWidget->removeTab(1);
     }
-    else if(people->user_Type == People::MANAGER)
+    else if(user_Type_Old == People::MANAGER)
     {
         // 删除 （用户管理界面）
-
+        delete usermanagementwidget;
+        usermanagementwidget=NULL;
+        ui->tabWidget->removeTab(1);
         // 删除 （书籍管理界面）
+
+
     }
 }
 
@@ -436,11 +454,44 @@ void MainWindow::bookborrowqueryUpdate()
     }
 }
 
+void MainWindow::usermanagementUpdate()
+{
+    QSqlQuery query(db);
+    QSqlQuery query0(db);
+
+    QString queryCommand;
+    if(people->user_Type == People::MANAGER)
+    {
+        queryCommand="select * from user;";
+        query.exec(queryCommand);
+
+        QVector<People> Catalog;
+        People user;
+
+        while(query.next())
+        {
+            user.user_Name=query.value("name").toString();
+            user.user_ID=query.value("id").toString();
+            user.user_Password=query.value("password").toString();
+            user.user_Type=People::USER;
+            user.user_canBorrow=query.value("canBorrow").toBool();
+            //获取借阅数
+            queryCommand="select * from borrow where user_id='"+user.user_ID+"';";
+            query0.exec(queryCommand);
+            user.booknum=query0.size();
+            Catalog.append(user);
+        }
+
+        emit Signal_usermanagementResult(Catalog);
+    }
+}
+
 void MainWindow::SLOT_bookBorrow(QVector<QString> bookborrow)
 {
     int sucessNum=0,errorNum=0;
     int borrowNum=bookborrow.size();
     QSqlQuery query(db);
+    QString queryCommand;
 
     QDate dateBorrow = QDate::currentDate();//.toString("yyyy-MM-dd")
     QDate dateReturn = dateBorrow.addDays(+30);//默认借30天,此外，获取剩余时间的方法：dateBorrow.daysTo(dateReturn);
@@ -451,7 +502,7 @@ void MainWindow::SLOT_bookBorrow(QVector<QString> bookborrow)
         {
             for (int i = 0; i < borrowNum; i++)
             {
-                QString queryCommand="insert into borrow (user_id, book_id, borrow_date, return_date) value ('"+
+                queryCommand="insert into borrow (user_id, book_id, borrow_date, return_date) value ('"+
                         people->user_ID+"', '"+bookborrow[i]+"', '"+dateBorrow.toString("yyyy-MM-dd")+"', '"+
                         dateReturn.toString("yyyy-MM-dd")+"');";
                 if(query.exec(queryCommand) == true)
@@ -553,3 +604,4 @@ void MainWindow::SLOT_bookReturn(QVector<QString> bookreturn)
     //还书后，更新借阅情况页面
     bookborrowqueryUpdate();
 }
+

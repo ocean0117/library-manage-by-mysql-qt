@@ -21,7 +21,7 @@ BookBorrowInfoWidget::BookBorrowInfoWidget(QWidget *parent) :
 
     const char* tableheader[] = { " ","编号","书名","类型","价格","借阅日期","归还期限","剩余天数"};
     QStringList header;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 8; i++)
             header << tableheader[i];
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->setColumnWidth(0, 80);

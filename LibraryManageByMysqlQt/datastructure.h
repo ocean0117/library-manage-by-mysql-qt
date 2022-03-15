@@ -14,6 +14,7 @@ public:
     QString user_ID;
     QString user_Password;
     bool user_canBorrow;
+    int booknum;
     int user_Type;//人员的类型: MANAGER, USER, VISITOR
 };
 

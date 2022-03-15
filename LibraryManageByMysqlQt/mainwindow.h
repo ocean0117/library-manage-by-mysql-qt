@@ -9,12 +9,14 @@
 #include <QSqlQuery>
 #include <QWidget>
 #include <QMessageBox>
+#include <QSqlRecord>
 
+#include "datastructure.h"
 #include "loginwindow.h"
 #include "registerwindow.h"
 #include "booksearchwidget.h"
 #include "bookborrowinfowidget.h"
-#include "datastructure.h"
+#include "usermanagementwidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,11 +38,13 @@ private:
     RegisterWindow *registerwindow;
     BookSearchWidget *booksearchwidget;
     BookBorrowInfoWidget *bookborrowinfowidget;
+    UserManagementWidget *usermanagementwidget;
 
     QSqlDatabase db;
 
-    void bookquerySearch(BookQuery, bool recover);
+    void bookquerySearch(BookQuery, bool);
     void bookborrowqueryUpdate();
+    void usermanagementUpdate();
 
 private slots:
     void SLOT_updatetime();
@@ -64,6 +68,7 @@ signals:
     void Signal_bookqueryResult(QVector<Book>,People*);
     void Signal_bookborrowqueryResult(QVector<BorrowBook>,People*);
     void Signal_loginQuit();
+    void Signal_usermanagementResult(QVector<People>);
 
 
 
