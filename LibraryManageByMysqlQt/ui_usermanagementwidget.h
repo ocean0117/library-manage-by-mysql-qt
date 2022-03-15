@@ -195,7 +195,7 @@ public:
         label_userID->setText(QApplication::translate("UserManagementWidget", "\350\257\267\350\276\223\345\205\245\347\224\250\346\210\267\345\255\246\345\217\267\357\274\232", 0));
         Button_Search->setText(QApplication::translate("UserManagementWidget", "\346\237\245  \350\257\242", 0));
         groupBox_2->setTitle(QString());
-        Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\346\235\203\351\231\220", 0));
+        Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\344\277\241\346\201\257", 0));
         Button_deleteUser->setText(QApplication::translate("UserManagementWidget", "\345\210\240\351\231\244\347\224\250\346\210\267", 0));
         Button_addUser->setText(QApplication::translate("UserManagementWidget", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
     } // retranslateUi

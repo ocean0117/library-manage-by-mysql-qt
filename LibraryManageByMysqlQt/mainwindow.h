@@ -17,6 +17,7 @@
 #include "booksearchwidget.h"
 #include "bookborrowinfowidget.h"
 #include "usermanagementwidget.h"
+#include "userdetailwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +40,7 @@ private:
     BookSearchWidget *booksearchwidget;
     BookBorrowInfoWidget *bookborrowinfowidget;
     UserManagementWidget *usermanagementwidget;
+    UserDetailWindow *userdetailwnidow;
 
     QSqlDatabase db;
 
@@ -64,13 +66,19 @@ private slots:
 
     void SLOT_bookReturn(QVector<QString>);
 
+    void SLOT_SearchUserDetailInfo(QString);
+
+    void SLOT_userdetailwindowClosed();
+
 signals:
     void Signal_bookqueryResult(QVector<Book>,People*);
     void Signal_bookborrowqueryResult(QVector<BorrowBook>,People*);
     void Signal_loginQuit();
     void Signal_usermanagementResult(QVector<People>);
+    void Signal_SearchUserDetailUpdate(UserDetial);
 
-
+    void Signal_enableButton_SearchUserDetail();
+    void Signal_disableButton_SearchUserDetail();
 
 private:
     Ui::MainWindow *ui;

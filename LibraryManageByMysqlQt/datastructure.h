@@ -1,6 +1,7 @@
 #ifndef DATASTRUCTURE
 #define DATASTRUCTURE
 
+#include <QVector>
 class People{
 public:
     /*
@@ -51,6 +52,12 @@ public:
     QString userID;
     QString dateBorrow;
     QString dateReturn;
+};
+
+class UserDetial{
+public:
+    People user;
+    QVector<BorrowBook> borrowbook;
 };
 
 #endif // DATASTRUCTURE

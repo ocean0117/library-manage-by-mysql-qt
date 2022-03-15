@@ -3,8 +3,9 @@
 
 #include <QWidget>
 #include <QTableWidgetItem>
-
+#include <QMessageBox>
 #include "datastructure.h"
+
 namespace Ui {
 class UserManagementWidget;
 }
@@ -24,6 +25,12 @@ private slots:
     void on_Button_addUser_clicked();
 
     void SLOT_usermanagementResult(QVector<People>);
+
+    void SLOT_enableButton_SearchUserDetail();
+    void SLOT_disableButton_SearchUserDetail();
+signals:
+    void Signal_SearchUserDetailInfo(QString);
+
 private:
     int rowcount;
     int numuser;

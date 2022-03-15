@@ -67,8 +67,6 @@ foreign key (book_id) references book(book_id)
 
 
 
-
-
 补充：
 git clone后，需要在LibraryManageByMysqlQt文件夹下新建debug和release文件夹；
 然后，勾上shadow build，并将构建目录选择为LibraryManageByMysqlQt下

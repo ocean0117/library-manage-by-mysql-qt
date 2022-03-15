@@ -50,7 +50,15 @@ UserManagementWidget::~UserManagementWidget()
 
 void UserManagementWidget::on_Button_Search_clicked()
 {
-
+    QString userID=ui->LineEdit_userID->text().trimmed();
+    if(userID == "")
+    {
+        QMessageBox::critical(NULL, "Error", "请输入正确的学号", QMessageBox::Yes);
+    }
+    else
+    {
+        emit Signal_SearchUserDetailInfo(userID);
+    }
 }
 
 void UserManagementWidget::on_Button_changePri_clicked()
@@ -101,4 +109,14 @@ void UserManagementWidget::SLOT_usermanagementResult(QVector<People> Catalog)
         ui->tableWidget->setItem(i,4,new QTableWidgetItem(Catalog[i].user_canBorrow?"拥有借书权限":" "));
         ui->tableWidget->setItem(i,5,new QTableWidgetItem(QString::number(Catalog[i].booknum,10)));
     }
+}
+
+void UserManagementWidget::SLOT_enableButton_SearchUserDetail()
+{
+    ui->Button_Search->setEnabled(true);
+}
+
+void UserManagementWidget::SLOT_disableButton_SearchUserDetail()
+{
+    ui->Button_Search->setDisabled(true);
 }
