@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     booksearchwidget.cpp \
     bookborrowinfowidget.cpp \
     usermanagementwidget.cpp \
-    userdetailwindow.cpp
+    userdetailwindow.cpp \
+    bookmanagementwidget.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     bookborrowinfowidget.h \
     datastructure.h \
     usermanagementwidget.h \
-    userdetailwindow.h
+    userdetailwindow.h \
+    bookmanagementwidget.h
 
 FORMS    += mainwindow.ui \
     loginwindow.ui \
@@ -37,7 +39,8 @@ FORMS    += mainwindow.ui \
     booksearchwidget.ui \
     bookborrowinfowidget.ui \
     usermanagementwidget.ui \
-    userdetailwindow.ui
+    userdetailwindow.ui \
+    bookmanagementwidget.ui
 
 RESOURCES += \
     images.qrc

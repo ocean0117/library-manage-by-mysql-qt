@@ -50,14 +50,16 @@ SOURCES       = main.cpp \
 		booksearchwidget.cpp \
 		bookborrowinfowidget.cpp \
 		usermanagementwidget.cpp \
-		userdetailwindow.cpp release\qrc_images.cpp \
+		userdetailwindow.cpp \
+		bookmanagementwidget.cpp release\qrc_images.cpp \
 		release\moc_mainwindow.cpp \
 		release\moc_loginwindow.cpp \
 		release\moc_registerwindow.cpp \
 		release\moc_booksearchwidget.cpp \
 		release\moc_bookborrowinfowidget.cpp \
 		release\moc_usermanagementwidget.cpp \
-		release\moc_userdetailwindow.cpp
+		release\moc_userdetailwindow.cpp \
+		release\moc_bookmanagementwidget.cpp
 OBJECTS       = release/main.o \
 		release/mainwindow.o \
 		release/loginwindow.o \
@@ -66,6 +68,7 @@ OBJECTS       = release/main.o \
 		release/bookborrowinfowidget.o \
 		release/usermanagementwidget.o \
 		release/userdetailwindow.o \
+		release/bookmanagementwidget.o \
 		release/qrc_images.o \
 		release/moc_mainwindow.o \
 		release/moc_loginwindow.o \
@@ -73,7 +76,8 @@ OBJECTS       = release/main.o \
 		release/moc_booksearchwidget.o \
 		release/moc_bookborrowinfowidget.o \
 		release/moc_usermanagementwidget.o \
-		release/moc_userdetailwindow.o
+		release/moc_userdetailwindow.o \
+		release/moc_bookmanagementwidget.o
 
 DIST          =  mainwindow.h \
 		loginwindow.h \
@@ -82,14 +86,16 @@ DIST          =  mainwindow.h \
 		bookborrowinfowidget.h \
 		datastructure.h \
 		usermanagementwidget.h \
-		userdetailwindow.h main.cpp \
+		userdetailwindow.h \
+		bookmanagementwidget.h main.cpp \
 		mainwindow.cpp \
 		loginwindow.cpp \
 		registerwindow.cpp \
 		booksearchwidget.cpp \
 		bookborrowinfowidget.cpp \
 		usermanagementwidget.cpp \
-		userdetailwindow.cpp
+		userdetailwindow.cpp \
+		bookmanagementwidget.cpp
 QMAKE_TARGET  = LibraryManageByMysqlQt
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = LibraryManageByMysqlQt.exe
@@ -116,7 +122,7 @@ DESTDIR_TARGET = release\LibraryManageByMysqlQt.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h ui_bookmanagementwidget.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.LibraryManageByMysqlQt.Release  $(LIBS)
 
 qmake: FORCE
@@ -128,7 +134,7 @@ dist:
 	$(ZIP) LibraryManageByMysqlQt.zip $(SOURCES) $(DIST) LibraryManageByMysqlQt.pro D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\spec_pre.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\qdevice.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\device_config.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\qconfig.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcollision.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcollision_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dlogic.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_clucene_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_core.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_core_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_designer.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_designer_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_gui.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_gui_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_help.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_help_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_location.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_location_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_network.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_network_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_platformsupport_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qml.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qml_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_quick.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_quick_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_script.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_script_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_sql.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_sql_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_svg.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_svg_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_uiplugin.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_xml.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_xml_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\qt_functions.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\qt_config.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\win32\qt_config.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\win32-g++\qmake.conf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\spec_post.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\exclusive_builds.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\default_pre.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\win32\default_pre.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\resolve_config.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\exclusive_builds_post.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\default_post.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\build_pass.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\win32\rtti.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\precompile_header.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\warn_on.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\qt.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\resources.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\moc.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\win32\opengl.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\uic.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\win32\windows.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\testcase_targets.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\exceptions.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\yacc.prf D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\features\lex.prf LibraryManageByMysqlQt.pro images.qrc D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/lib/qtmain.prl D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/lib/Qt5Widgets.prl D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/lib/Qt5Gui.prl D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/lib/Qt5Sql.prl D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\mainwindow.o release\loginwindow.o release\registerwindow.o release\booksearchwidget.o release\bookborrowinfowidget.o release\usermanagementwidget.o release\userdetailwindow.o release\qrc_images.o release\moc_mainwindow.o release\moc_loginwindow.o release\moc_registerwindow.o release\moc_booksearchwidget.o release\moc_bookborrowinfowidget.o release\moc_usermanagementwidget.o release\moc_userdetailwindow.o
+	-$(DEL_FILE) release\main.o release\mainwindow.o release\loginwindow.o release\registerwindow.o release\booksearchwidget.o release\bookborrowinfowidget.o release\usermanagementwidget.o release\userdetailwindow.o release\bookmanagementwidget.o release\qrc_images.o release\moc_mainwindow.o release\moc_loginwindow.o release\moc_registerwindow.o release\moc_booksearchwidget.o release\moc_bookborrowinfowidget.o release\moc_usermanagementwidget.o release\moc_userdetailwindow.o release\moc_bookmanagementwidget.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -149,9 +155,9 @@ release/qrc_images.cpp: images.qrc \
 		images/titleBackground.jpg
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\rcc.exe -name images images.qrc -o release\qrc_images.cpp
 
-compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_loginwindow.cpp release/moc_registerwindow.cpp release/moc_booksearchwidget.cpp release/moc_bookborrowinfowidget.cpp release/moc_usermanagementwidget.cpp release/moc_userdetailwindow.cpp
+compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_loginwindow.cpp release/moc_registerwindow.cpp release/moc_booksearchwidget.cpp release/moc_bookborrowinfowidget.cpp release/moc_usermanagementwidget.cpp release/moc_userdetailwindow.cpp release/moc_bookmanagementwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_loginwindow.cpp release\moc_registerwindow.cpp release\moc_booksearchwidget.cpp release\moc_bookborrowinfowidget.cpp release\moc_usermanagementwidget.cpp release\moc_userdetailwindow.cpp
+	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_loginwindow.cpp release\moc_registerwindow.cpp release\moc_booksearchwidget.cpp release\moc_bookborrowinfowidget.cpp release\moc_usermanagementwidget.cpp release\moc_userdetailwindow.cpp release\moc_bookmanagementwidget.cpp
 release/moc_mainwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -275,6 +281,7 @@ release/moc_mainwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWid
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		loginwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QDialog \
 		registerwindow.h \
@@ -305,6 +312,7 @@ release/moc_mainwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWid
 		bookborrowinfowidget.h \
 		usermanagementwidget.h \
 		userdetailwindow.h \
+		bookmanagementwidget.h \
 		mainwindow.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp
 
@@ -653,6 +661,7 @@ release/moc_booksearchwidget.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDate \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		booksearchwidget.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore booksearchwidget.h -o release\moc_booksearchwidget.cpp
 
@@ -781,6 +790,7 @@ release/moc_bookborrowinfowidget.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/inc
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		bookborrowinfowidget.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore bookborrowinfowidget.h -o release\moc_bookborrowinfowidget.cpp
 
@@ -910,6 +920,7 @@ release/moc_usermanagementwidget.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/inc
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdialog.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		usermanagementwidget.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore usermanagementwidget.h -o release\moc_usermanagementwidget.cpp
 
@@ -1016,14 +1027,125 @@ release/moc_userdetailwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDate \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		userdetailwindow.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore userdetailwindow.h -o release\moc_userdetailwindow.cpp
 
+release/moc_bookmanagementwidget.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QWidget \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qglobal.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qconfig.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlogging.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qflags.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmutex.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobject.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstring.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qchar.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qiterator.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregexp.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qisenum.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmargins.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qrect.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsize.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qpoint.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpalette.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qcolor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qrgb.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qbrush.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qpair.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvector.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qregion.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qline.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtransform.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qimage.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qhash.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfont.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qcursor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qevent.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvariant.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdebug.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlocale.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qset.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qurl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfile.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		bookmanagementwidget.h
+	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore bookmanagementwidget.h -o release\moc_bookmanagementwidget.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h ui_bookmanagementwidget.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_booksearchwidget.h ui_bookborrowinfowidget.h ui_usermanagementwidget.h ui_userdetailwindow.h ui_bookmanagementwidget.h
 ui_mainwindow.h: mainwindow.ui
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\uic.exe mainwindow.ui -o ui_mainwindow.h
 
@@ -1044,6 +1166,9 @@ ui_usermanagementwidget.h: usermanagementwidget.ui
 
 ui_userdetailwindow.h: userdetailwindow.ui
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\uic.exe userdetailwindow.ui -o ui_userdetailwindow.h
+
+ui_bookmanagementwidget.h: bookmanagementwidget.ui
+	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\uic.exe bookmanagementwidget.ui -o ui_bookmanagementwidget.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1181,6 +1306,7 @@ release/main.o: main.cpp mainwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		loginwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QDialog \
 		registerwindow.h \
@@ -1211,6 +1337,7 @@ release/main.o: main.cpp mainwindow.h \
 		bookborrowinfowidget.h \
 		usermanagementwidget.h \
 		userdetailwindow.h \
+		bookmanagementwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qapplication.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
@@ -1344,6 +1471,7 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/QSqlRecord \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql/qsqlrecord.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		loginwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QDialog \
 		registerwindow.h \
@@ -1374,6 +1502,7 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		bookborrowinfowidget.h \
 		usermanagementwidget.h \
 		userdetailwindow.h \
+		bookmanagementwidget.h \
 		ui_mainwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -1856,6 +1985,7 @@ release/booksearchwidget.o: booksearchwidget.cpp booksearchwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDate \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatetime.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		ui_booksearchwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -2026,6 +2156,7 @@ release/bookborrowinfowidget.o: bookborrowinfowidget.cpp bookborrowinfowidget.h 
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		ui_bookborrowinfowidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -2183,6 +2314,7 @@ release/usermanagementwidget.o: usermanagementwidget.cpp usermanagementwidget.h 
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdialog.h \
 		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
 		ui_usermanagementwidget.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -2328,8 +2460,179 @@ release/userdetailwindow.o: userdetailwindow.cpp userdetailwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		ui_userdetailwindow.h
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDate \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		datastructure.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
+		ui_userdetailwindow.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qicon.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QCheckBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcheckbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QGridLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QLabel \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpen.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QTableWidget \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtablewidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtableview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\userdetailwindow.o userdetailwindow.cpp
+
+release/bookmanagementwidget.o: bookmanagementwidget.cpp bookmanagementwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QWidget \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qglobal.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qconfig.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlogging.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qflags.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmutex.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobject.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstring.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qchar.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qiterator.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregexp.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qisenum.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmargins.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qrect.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsize.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qpoint.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpalette.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qcolor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qrgb.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qbrush.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qpair.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvector.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qregion.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qline.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtransform.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qimage.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qhash.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfont.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qcursor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qevent.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qvariant.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qmap.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdebug.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qlocale.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qset.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qurl.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfile.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		ui_bookmanagementwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\bookmanagementwidget.o bookmanagementwidget.cpp
 
 release/qrc_images.o: release/qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_images.o release\qrc_images.cpp
@@ -2354,6 +2657,9 @@ release/moc_usermanagementwidget.o: release/moc_usermanagementwidget.cpp
 
 release/moc_userdetailwindow.o: release/moc_userdetailwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_userdetailwindow.o release\moc_userdetailwindow.cpp
+
+release/moc_bookmanagementwidget.o: release/moc_bookmanagementwidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_bookmanagementwidget.o release\moc_bookmanagementwidget.cpp
 
 ####### Install
 

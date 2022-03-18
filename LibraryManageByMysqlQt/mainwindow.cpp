@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bookborrowinfowidget=NULL;
     usermanagementwidget=NULL;
     userdetailwnidow=NULL;
+    bookmanagementwidget=NULL;
     people=NULL;
 
     /*** 标题界面UI设计 ***/
@@ -102,6 +103,11 @@ MainWindow::~MainWindow()
         registerwindow->close();
         delete registerwindow;
         registerwindow=NULL;
+    }
+    if(bookmanagementwidget!=NULL)
+    {
+        delete bookmanagementwidget;
+        bookmanagementwidget=NULL;
     }
 }
 
@@ -199,11 +205,11 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
             connect(usermanagementwidget,SIGNAL(Signal_changeUserPri(QVector<QString>)),this,SLOT(SLOT_changeUserPri(QVector<QString>)));
             connect(usermanagementwidget,SIGNAL(Signal_deleteUser(QVector<QString>)),this,SLOT(SLOT_deleteUser(QVector<QString>)));
             connect(usermanagementwidget,SIGNAL(Signal_addUser()),this,SLOT(SLOT_setWindowRegister()));
-
             usermanagementUpdate();//（用户管理界面），更新用户管理结果页面，初始化显示
 
             //（书籍管理界面）
-
+            bookmanagementwidget = new BookManagementWidget();
+            ui->tabWidget->addTab(bookmanagementwidget,"书籍管理");
         }
     }
 }
@@ -296,14 +302,15 @@ void MainWindow::on_Button_quitLogin_clicked()
         usermanagementwidget=NULL;
         ui->tabWidget->removeTab(1);
 
-        // 判断 (用户详细信息界面） 是否存在，存在则关闭
-        if(userdetailwnidow!=NULL)
+        if(userdetailwnidow!=NULL)// 判断 (用户详细信息界面） 是否存在，存在则关闭
         {
             userdetailwnidow->close();
         }
+
         // 删除 （书籍管理界面）
-
-
+        delete bookmanagementwidget;
+        bookmanagementwidget = NULL;
+        ui->tabWidget->removeTab(2);
     }
 }
 
@@ -795,7 +802,7 @@ void MainWindow::SLOT_changeUserPri(QVector<QString> changepriuser)
     }
     else
     {
-        QMessageBox::critical(NULL, "请正确选择需要修改的用户", "", QMessageBox::Yes);
+        QMessageBox::critical(NULL, "Error", "请正确选择需要修改的用户", QMessageBox::Yes);
     }
 
     //更改后，判断是否有打开了(用户详细信息界面)。若打开则关闭

@@ -7,6 +7,7 @@ INPUT(
 ./release\bookborrowinfowidget.o
 ./release\usermanagementwidget.o
 ./release\userdetailwindow.o
+./release\bookmanagementwidget.o
 ./release\qrc_images.o
 ./release\moc_mainwindow.o
 ./release\moc_loginwindow.o
@@ -15,4 +16,5 @@ INPUT(
 ./release\moc_bookborrowinfowidget.o
 ./release\moc_usermanagementwidget.o
 ./release\moc_userdetailwindow.o
+./release\moc_bookmanagementwidget.o
 );

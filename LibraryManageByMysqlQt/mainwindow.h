@@ -18,6 +18,7 @@
 #include "bookborrowinfowidget.h"
 #include "usermanagementwidget.h"
 #include "userdetailwindow.h"
+#include "bookmanagementwidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -41,6 +42,7 @@ private:
     BookBorrowInfoWidget *bookborrowinfowidget;
     UserManagementWidget *usermanagementwidget;
     UserDetailWindow *userdetailwnidow;
+    BookManagementWidget *bookmanagementwidget;
 
     QSqlDatabase db;
 
