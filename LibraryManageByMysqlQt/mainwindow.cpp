@@ -93,8 +93,15 @@ MainWindow::~MainWindow()
     }
     if(userdetailwnidow!=NULL)
     {
+        userdetailwnidow->close();
         delete userdetailwnidow;
         userdetailwnidow=NULL;
+    }
+    if(registerwindow!=NULL)
+    {
+        registerwindow->close();
+        delete registerwindow;
+        registerwindow=NULL;
     }
 }
 
@@ -189,6 +196,10 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
             connect(usermanagementwidget,SIGNAL(Signal_SearchUserDetailInfo(QString)),this,SLOT(SLOT_SearchUserDetailInfo(QString)));
             connect(this,SIGNAL(Signal_enableButton_SearchUserDetail()),usermanagementwidget,SLOT(SLOT_enableButton_SearchUserDetail()));
             connect(this,SIGNAL(Signal_disableButton_SearchUserDetail()),usermanagementwidget,SLOT(SLOT_disableButton_SearchUserDetail()));
+            connect(usermanagementwidget,SIGNAL(Signal_changeUserPri(QVector<QString>)),this,SLOT(SLOT_changeUserPri(QVector<QString>)));
+            connect(usermanagementwidget,SIGNAL(Signal_deleteUser(QVector<QString>)),this,SLOT(SLOT_deleteUser(QVector<QString>)));
+            connect(usermanagementwidget,SIGNAL(Signal_addUser()),this,SLOT(SLOT_setWindowRegister()));
+
             usermanagementUpdate();//（用户管理界面），更新用户管理结果页面，初始化显示
 
             //（书籍管理界面）
@@ -199,9 +210,12 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
 
 void MainWindow::SLOT_setWindowRegister()
 {
-    //注册时禁用登录和注册按钮
-    ui->Button_login->setDisabled(true);
-    ui->Button_register->setDisabled(true);
+    if(people->user_Type == People::VISITOR)
+    {
+        //注册时禁用登录和注册按钮
+        ui->Button_login->setDisabled(true);
+        ui->Button_register->setDisabled(true);
+    }
 
     //显示（注册界面）
     registerwindow = new RegisterWindow();
@@ -239,6 +253,12 @@ void MainWindow::SLOT_register(QVector<QString> values)
         QMessageBox::information(NULL, "Info", "id为" + values.at(0) + "的普通用户注册成功", QMessageBox::Yes);
 
         registerwindow->close();
+    }
+
+    if(people->user_Type == People::MANAGER)
+    {
+        // 管理员注册用户后，更新（用户管理界面）
+        usermanagementUpdate();
     }
 }
 
@@ -641,6 +661,9 @@ void MainWindow::SLOT_SearchUserDetailInfo(QString userID)
             userdetailwnidow->show();
             connect(this,SIGNAL(Signal_SearchUserDetailUpdate(UserDetial)),userdetailwnidow,SLOT(SLOT_SearchUserDetailUpdate(UserDetial)));
             connect(userdetailwnidow,SIGNAL(Signal_userdetailwindowClosed()),this,SLOT(SLOT_userdetailwindowClosed()));
+            connect(userdetailwnidow,SIGNAL(Signal_changeUserInfo(UserDetial)),this,SLOT(SLOT_changeUserInfo(UserDetial)));
+            connect(this,SIGNAL(Signal_OnlyUserDetailUpdate(UserDetial)),userdetailwnidow,SLOT(SLOT_OnlyUserDetailUpdate(UserDetial)));
+            connect(userdetailwnidow,SIGNAL(Signal_deleteUser(UserDetial)),this,SLOT(SLOT_deleteUser(UserDetial)));
 
             userdetial.user.user_Name=query.value("name").toString();
             userdetial.user.user_ID=query.value("id").toString();
@@ -686,7 +709,141 @@ void MainWindow::SLOT_SearchUserDetailInfo(QString userID)
 
 void MainWindow::SLOT_userdetailwindowClosed()
 {
+    userdetailwindowClosed();
+}
+
+void MainWindow::userdetailwindowClosed()
+{
+    userdetailwnidow->close();
     delete userdetailwnidow; //防止内存泄漏和野指针
     userdetailwnidow=NULL;
     emit Signal_enableButton_SearchUserDetail();
+}
+
+void MainWindow::SLOT_changeUserInfo(UserDetial userdetialOld)
+{
+    QSqlQuery query(db);
+    QString queryCommand;
+    if(people->user_Type == People::MANAGER)
+    {
+        //更新数据库
+        queryCommand = QString("update user set name='%1', password='%2', canBorrow=%3 where id='%4';").arg(userdetialOld.user.user_Name, userdetialOld.user.user_Password,userdetialOld.user.user_canBorrow?"true":"false", userdetialOld.user.user_ID);
+        query.exec(queryCommand);
+
+        //从数据中读取新的值
+        queryCommand = QString("select name,password,canBorrow from user where id='%1';").arg(userdetialOld.user.user_ID);
+        query.exec(queryCommand);
+
+        if(query.next())
+        {
+            userdetialOld.user.user_Name=query.value("name").toString();
+            userdetialOld.user.user_Password=query.value("password").toString();
+            userdetialOld.user.user_canBorrow=query.value("canBorrow").toBool();
+
+            emit Signal_OnlyUserDetailUpdate(userdetialOld);
+            usermanagementUpdate();
+            QMessageBox::information(NULL, "Info", "用户信息已更新", QMessageBox::Yes);
+        }
+    }
+}
+
+void MainWindow::SLOT_deleteUser(UserDetial userdetialNow)
+{
+    QSqlQuery query(db);
+    QString queryCommand;
+    if(people->user_Type == People::MANAGER)
+    {
+        //删除用户需要用户借阅数量为0
+        queryCommand="select * from borrow where user_id='"+userdetialNow.user.user_ID+"';";
+        query.exec(queryCommand);
+        if(query.size()!=0)
+        {
+            QMessageBox::critical(NULL, "Error", "用户有借阅，不能删除", QMessageBox::Yes);
+        }
+        else
+        {
+            queryCommand = QString("delete from user where id='%1';").arg(userdetialNow.user.user_ID);
+            query.exec(queryCommand);
+
+            userdetailwindowClosed();
+            usermanagementUpdate();
+            QMessageBox::information(NULL, "Info", "用户删除成功", QMessageBox::Yes);
+        }
+    }
+}
+
+void MainWindow::SLOT_changeUserPri(QVector<QString> changepriuser)
+{
+    int changeNum=changepriuser.size();
+    QSqlQuery query(db);
+    QString queryCommand;
+    bool changeuserPri;
+
+    if(changeNum > 0)
+    {
+        for (int i = 0; i < changeNum; i++)
+        {
+            queryCommand = QString("select canBorrow from user where id='%1';").arg(changepriuser[i]);
+            query.exec(queryCommand);
+            if(query.next())
+            {
+                changeuserPri=query.value("canBorrow").toBool();
+            }
+            queryCommand = QString("update user set canBorrow=%1 where id='%2';").arg(changeuserPri?"false":"true", changepriuser[i]);
+            query.exec(queryCommand);
+        }
+    }
+    else
+    {
+        QMessageBox::critical(NULL, "请正确选择需要修改的用户", "", QMessageBox::Yes);
+    }
+
+    //更改后，判断是否有打开了(用户详细信息界面)。若打开则关闭
+    if(userdetailwnidow!=NULL)
+    {
+        userdetailwnidow->close();
+        delete userdetailwnidow;
+        userdetailwnidow=NULL;
+    }
+    // 更改后，更新（用户管理界面）
+    usermanagementUpdate();
+}
+
+void MainWindow::SLOT_deleteUser(QVector<QString> deleteuser)
+{
+    int sucessNum=0;
+    int deleteNum=deleteuser.size();
+    QSqlQuery query(db);
+    QString queryCommand;
+
+    if(deleteNum > 0)
+    {
+        for (int i = 0; i < deleteNum; i++)
+        {
+            queryCommand = QString("delete from user where id='%1';").arg(deleteuser[i]);
+            if(query.exec(queryCommand) == true)
+            {
+                sucessNum++;
+            }
+        }
+        if(sucessNum > 0)
+        {
+            QMessageBox::information(NULL, "Info", "成功删除"+QString::number(sucessNum,10)+"名用户", QMessageBox::Yes);
+        }
+    }
+    else
+    {
+        QMessageBox::critical(NULL, "Error", "请正确选择需要修改的用户", QMessageBox::Yes);
+    }
+
+    //更改后，判断是否有打开了(用户详细信息界面)。若打开则关闭
+    if(userdetailwnidow!=NULL)
+    {
+        userdetailwnidow->close();
+        delete userdetailwnidow;
+        userdetailwnidow=NULL;
+    }
+
+    // 更改后，更新（用户管理界面）
+    usermanagementUpdate();
 }

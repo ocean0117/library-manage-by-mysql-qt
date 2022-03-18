@@ -47,7 +47,7 @@ private:
     void bookquerySearch(BookQuery, bool);
     void bookborrowqueryUpdate();
     void usermanagementUpdate();
-
+    void userdetailwindowClosed();
 private slots:
     void SLOT_updatetime();
 
@@ -69,6 +69,10 @@ private slots:
     void SLOT_SearchUserDetailInfo(QString);
 
     void SLOT_userdetailwindowClosed();
+    void SLOT_changeUserInfo(UserDetial);
+    void SLOT_deleteUser(UserDetial);
+    void SLOT_changeUserPri(QVector<QString>);
+    void SLOT_deleteUser(QVector<QString>);
 
 signals:
     void Signal_bookqueryResult(QVector<Book>,People*);
@@ -76,6 +80,7 @@ signals:
     void Signal_loginQuit();
     void Signal_usermanagementResult(QVector<People>);
     void Signal_SearchUserDetailUpdate(UserDetial);
+    void Signal_OnlyUserDetailUpdate(UserDetial);
 
     void Signal_enableButton_SearchUserDetail();
     void Signal_disableButton_SearchUserDetail();

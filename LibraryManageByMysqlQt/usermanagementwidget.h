@@ -22,14 +22,18 @@ private slots:
     void on_Button_Search_clicked();
     void on_Button_changePri_clicked();
     void on_Button_deleteUser_clicked();
-    void on_Button_addUser_clicked();
 
     void SLOT_usermanagementResult(QVector<People>);
 
     void SLOT_enableButton_SearchUserDetail();
     void SLOT_disableButton_SearchUserDetail();
+    void on_Button_addUser_clicked();
+
 signals:
     void Signal_SearchUserDetailInfo(QString);
+    void Signal_changeUserPri(QVector<QString>);
+    void Signal_deleteUser(QVector<QString>);
+    void Signal_addUser();
 
 private:
     int rowcount;

@@ -212,7 +212,7 @@ void BookSearchWidget::Clear()
     ui->LineEdit_publisher->clear();
     ui->LineEdit_price1->clear();
     ui->LineEdit_price2->clear();
-    ui->checkBox_haveStock->setCheckState(Qt::Unchecked);;
+    ui->checkBox_haveStock->setCheckState(Qt::Unchecked);
 
     //清除表内数据，然后
     if(tablecheckitem!=NULL)

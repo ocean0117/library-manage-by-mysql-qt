@@ -97,7 +97,7 @@
            </size>
           </property>
           <property name="text">
-           <string>&lt;h2&gt;用户详细信息查询&lt;/h2&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;用户详细信息&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -240,7 +240,7 @@
          </size>
         </property>
         <property name="text">
-         <string>更改用户信息</string>
+         <string>更改用户权限</string>
         </property>
        </widget>
       </item>

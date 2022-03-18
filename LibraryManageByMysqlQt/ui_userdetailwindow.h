@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
@@ -20,6 +21,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -43,8 +45,7 @@ public:
     QLabel *label_password;
     QLineEdit *LineEdit_password;
     QHBoxLayout *horizontalLayout_3;
-    QLabel *label_password_2;
-    QLineEdit *LineEdit_usePri;
+    QCheckBox *checkBox_Pri;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_userID;
@@ -58,6 +59,10 @@ public:
     QLabel *label_2;
     QSpacerItem *horizontalSpacer_5;
     QTableWidget *tableWidget;
+    QSpacerItem *horizontalSpacer_7;
+    QPushButton *Button_changeUserInfo;
+    QPushButton *Button_deleteUser;
+    QSpacerItem *horizontalSpacer_8;
 
     void setupUi(QDialog *UserDetailWindow)
     {
@@ -70,17 +75,17 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         horizontalSpacer_2 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_2, 0, 0, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_2, 0, 0, 1, 2);
 
         label = new QLabel(UserDetailWindow);
         label->setObjectName(QStringLiteral("label"));
         label->setAlignment(Qt::AlignCenter);
 
-        gridLayout_2->addWidget(label, 0, 1, 1, 1);
+        gridLayout_2->addWidget(label, 0, 2, 1, 2);
 
         horizontalSpacer_3 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_3, 0, 2, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_3, 0, 4, 1, 1);
 
         groupBox = new QGroupBox(UserDetailWindow);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -120,15 +125,10 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_password_2 = new QLabel(groupBox);
-        label_password_2->setObjectName(QStringLiteral("label_password_2"));
+        checkBox_Pri = new QCheckBox(groupBox);
+        checkBox_Pri->setObjectName(QStringLiteral("checkBox_Pri"));
 
-        horizontalLayout_3->addWidget(label_password_2);
-
-        LineEdit_usePri = new QLineEdit(groupBox);
-        LineEdit_usePri->setObjectName(QStringLiteral("LineEdit_usePri"));
-
-        horizontalLayout_3->addWidget(LineEdit_usePri);
+        horizontalLayout_3->addWidget(checkBox_Pri);
 
 
         verticalLayout_2->addLayout(horizontalLayout_3);
@@ -176,30 +176,52 @@ public:
         gridLayout->addLayout(verticalLayout, 0, 1, 1, 1);
 
 
-        gridLayout_2->addWidget(groupBox, 1, 0, 1, 2);
+        gridLayout_2->addWidget(groupBox, 1, 0, 1, 4);
 
         horizontalSpacer_6 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_6, 1, 2, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_6, 1, 4, 1, 1);
 
         horizontalSpacer_4 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_4, 2, 0, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_4, 2, 0, 1, 2);
 
         label_2 = new QLabel(UserDetailWindow);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setAlignment(Qt::AlignCenter);
 
-        gridLayout_2->addWidget(label_2, 2, 1, 1, 1);
+        gridLayout_2->addWidget(label_2, 2, 2, 1, 2);
 
         horizontalSpacer_5 = new QSpacerItem(358, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_5, 2, 2, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_5, 2, 4, 1, 1);
 
         tableWidget = new QTableWidget(UserDetailWindow);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
-        gridLayout_2->addWidget(tableWidget, 3, 0, 1, 3);
+        gridLayout_2->addWidget(tableWidget, 3, 0, 1, 5);
+
+        horizontalSpacer_7 = new QSpacerItem(297, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_7, 4, 0, 1, 1);
+
+        Button_changeUserInfo = new QPushButton(UserDetailWindow);
+        Button_changeUserInfo->setObjectName(QStringLiteral("Button_changeUserInfo"));
+        Button_changeUserInfo->setMinimumSize(QSize(150, 30));
+        Button_changeUserInfo->setMaximumSize(QSize(150, 30));
+
+        gridLayout_2->addWidget(Button_changeUserInfo, 4, 1, 1, 2);
+
+        Button_deleteUser = new QPushButton(UserDetailWindow);
+        Button_deleteUser->setObjectName(QStringLiteral("Button_deleteUser"));
+        Button_deleteUser->setMinimumSize(QSize(150, 30));
+        Button_deleteUser->setMaximumSize(QSize(150, 30));
+
+        gridLayout_2->addWidget(Button_deleteUser, 4, 3, 1, 1);
+
+        horizontalSpacer_8 = new QSpacerItem(304, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_8, 4, 4, 1, 1);
 
 
         retranslateUi(UserDetailWindow);
@@ -210,14 +232,16 @@ public:
     void retranslateUi(QDialog *UserDetailWindow)
     {
         UserDetailWindow->setWindowTitle(QApplication::translate("UserDetailWindow", "Dialog", 0));
-        label->setText(QApplication::translate("UserDetailWindow", "<h2>\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257\346\237\245\350\257\242</h2>", 0));
+        label->setText(QApplication::translate("UserDetailWindow", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257\346\237\245\350\257\242\344\270\216\351\205\215\347\275\256</span></p></body></html>", 0));
         groupBox->setTitle(QString());
         label_userName->setText(QApplication::translate("UserDetailWindow", "\345\247\223    \345\220\215\357\274\232", 0));
         label_password->setText(QApplication::translate("UserDetailWindow", "\345\257\206    \347\240\201\357\274\232", 0));
-        label_password_2->setText(QApplication::translate("UserDetailWindow", "\345\200\237\344\271\246\346\235\203\351\231\220\357\274\232", 0));
+        checkBox_Pri->setText(QApplication::translate("UserDetailWindow", "\345\205\201\350\256\270\345\200\237\351\230\205\344\271\246\347\261\215", 0));
         label_userID->setText(QApplication::translate("UserDetailWindow", "\345\255\246    \345\217\267\357\274\232", 0));
         label_password_3->setText(QApplication::translate("UserDetailWindow", "\345\200\237\344\271\246\346\225\260\351\207\217\357\274\232", 0));
         label_2->setText(QApplication::translate("UserDetailWindow", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\345\200\237\344\271\246\346\203\205\345\206\265\345\210\227\350\241\250</span></p></body></html>", 0));
+        Button_changeUserInfo->setText(QApplication::translate("UserDetailWindow", "\346\233\264\346\224\271\347\224\250\346\210\267\344\277\241\346\201\257", 0));
+        Button_deleteUser->setText(QApplication::translate("UserDetailWindow", "\345\210\240\351\231\244\347\224\250\346\210\267", 0));
     } // retranslateUi
 
 };

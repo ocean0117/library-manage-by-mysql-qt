@@ -191,11 +191,11 @@ public:
         UserManagementWidget->setWindowTitle(QApplication::translate("UserManagementWidget", "Form", 0));
         label->setText(QApplication::translate("UserManagementWidget", "<h1>\347\224\250\346\210\267\344\277\241\346\201\257\345\210\227\350\241\250</h1>", 0));
         groupBox->setTitle(QString());
-        label_2->setText(QApplication::translate("UserManagementWidget", "<h2>\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257\346\237\245\350\257\242</h2>", 0));
+        label_2->setText(QApplication::translate("UserManagementWidget", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257</span></p></body></html>", 0));
         label_userID->setText(QApplication::translate("UserManagementWidget", "\350\257\267\350\276\223\345\205\245\347\224\250\346\210\267\345\255\246\345\217\267\357\274\232", 0));
         Button_Search->setText(QApplication::translate("UserManagementWidget", "\346\237\245  \350\257\242", 0));
         groupBox_2->setTitle(QString());
-        Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\344\277\241\346\201\257", 0));
+        Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\346\235\203\351\231\220", 0));
         Button_deleteUser->setText(QApplication::translate("UserManagementWidget", "\345\210\240\351\231\244\347\224\250\346\210\267", 0));
         Button_addUser->setText(QApplication::translate("UserManagementWidget", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
     } // retranslateUi

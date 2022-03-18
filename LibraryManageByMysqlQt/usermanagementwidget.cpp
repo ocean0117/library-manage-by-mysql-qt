@@ -63,17 +63,28 @@ void UserManagementWidget::on_Button_Search_clicked()
 
 void UserManagementWidget::on_Button_changePri_clicked()
 {
-
+    QVector<QString> changepriuser;
+    for (int i = 0; i < numuser; i++)
+    {
+        if (ui->tableWidget->item(i, 0)->checkState() == Qt::Checked)
+        {
+            changepriuser.append(ui->tableWidget->item(i, 1)->text());
+        }
+    }
+    emit Signal_changeUserPri(changepriuser);
 }
 
 void UserManagementWidget::on_Button_deleteUser_clicked()
 {
-
-}
-
-void UserManagementWidget::on_Button_addUser_clicked()
-{
-
+    QVector<QString> deleteuser;
+    for (int i = 0; i < numuser; i++)
+    {
+        if (ui->tableWidget->item(i, 0)->checkState() == Qt::Checked && ui->tableWidget->item(i, 5)->text().toInt() == 0)
+        {
+            deleteuser.append(ui->tableWidget->item(i, 1)->text());
+        }
+    }
+    emit Signal_deleteUser(deleteuser);
 }
 
 void UserManagementWidget::SLOT_usermanagementResult(QVector<People> Catalog)
@@ -119,4 +130,9 @@ void UserManagementWidget::SLOT_enableButton_SearchUserDetail()
 void UserManagementWidget::SLOT_disableButton_SearchUserDetail()
 {
     ui->Button_Search->setDisabled(true);
+}
+
+void UserManagementWidget::on_Button_addUser_clicked()
+{
+    emit Signal_addUser();
 }

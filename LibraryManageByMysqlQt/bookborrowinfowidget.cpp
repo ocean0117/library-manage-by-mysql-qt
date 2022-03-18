@@ -69,7 +69,6 @@ void BookBorrowInfoWidget::on_Button_returnBook_clicked()
     }
 
     emit Signal_bookReturn(bookreturn);
-
 }
 
 void BookBorrowInfoWidget::SLOT_bookborrowqueryResult(QVector<BorrowBook> Catalog,People *people)
