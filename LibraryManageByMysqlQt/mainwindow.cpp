@@ -61,7 +61,8 @@ MainWindow::MainWindow(QWidget *parent) :
     /*** tabWidget界面UI设计 ***/
     ui->tabWidget->removeTab(1); // 删除控件自带的，注意：需要从大到小删除
     ui->tabWidget->removeTab(0);
-    // 默认界面：（图书搜索界面），它在退出整个界面时才删除
+
+    // 默认界面：（图书搜索界面），除了管理元会删除外，在退出整个界面时才删除
     booksearchwidget = new BookSearchWidget();
     ui->tabWidget->addTab(booksearchwidget,"图书搜索");
     connect(booksearchwidget,SIGNAL(Signal_bookquerySearch(BookQuery)),this,SLOT(SLOT_bookquerySearch(BookQuery)));
@@ -78,10 +79,14 @@ MainWindow::~MainWindow()
     // 防止内存泄漏和野指针
     delete timer;
     timer=NULL;
-    delete booksearchwidget;
-    booksearchwidget=NULL;
     delete people;
     people=NULL;
+
+    if(booksearchwidget!=NULL)
+    {
+        delete booksearchwidget;
+        booksearchwidget=NULL;
+    }
     if(bookborrowinfowidget!=NULL)
     {
         delete bookborrowinfowidget;
@@ -195,6 +200,14 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
         }
         else if(people->user_Type == People::MANAGER)
         {
+            //(图书搜索界面)删除
+            if(booksearchwidget!=NULL)
+            {
+                delete booksearchwidget;
+                booksearchwidget=NULL;
+                ui->tabWidget->removeTab(0);
+            }
+
             //（用户管理界面）
             usermanagementwidget=new UserManagementWidget();
             ui->tabWidget->addTab(usermanagementwidget,"用户管理");
@@ -298,19 +311,34 @@ void MainWindow::on_Button_quitLogin_clicked()
     else if(user_Type_Old == People::MANAGER)
     {
         // 删除 （用户管理界面）
-        delete usermanagementwidget;
-        usermanagementwidget=NULL;
-        ui->tabWidget->removeTab(1);
+        if(usermanagementwidget!=NULL)
+        {
+            delete usermanagementwidget;
+            usermanagementwidget=NULL;
+            ui->tabWidget->removeTab(0);
+        }
 
         if(userdetailwnidow!=NULL)// 判断 (用户详细信息界面） 是否存在，存在则关闭
         {
-            userdetailwnidow->close();
+            userdetailwnidow->close();//自动清理
         }
 
         // 删除 （书籍管理界面）
-        delete bookmanagementwidget;
-        bookmanagementwidget = NULL;
-        ui->tabWidget->removeTab(2);
+        if(bookmanagementwidget!=NULL)
+        {
+            delete bookmanagementwidget;
+            bookmanagementwidget = NULL;
+            ui->tabWidget->removeTab(1);
+        }
+
+        // 默认界面：（图书搜索界面），除了管理元会删除外，在退出整个界面时才删除
+        booksearchwidget = new BookSearchWidget();
+        ui->tabWidget->addTab(booksearchwidget,"图书搜索");
+        connect(booksearchwidget,SIGNAL(Signal_bookquerySearch(BookQuery)),this,SLOT(SLOT_bookquerySearch(BookQuery)));
+        connect(this,SIGNAL(Signal_bookqueryResult(QVector<Book>,People*)),booksearchwidget,SLOT(SLOT_bookqueryResult(QVector<Book>,People*)));
+        connect(booksearchwidget,SIGNAL(Signal_bookBorrow(QVector<QString>)),this,SLOT(SLOT_bookBorrow(QVector<QString>)));
+        connect(this,SIGNAL(Signal_loginQuit()),booksearchwidget,SLOT(SLOT_loginQuit()));
+        BookQuery bookquery; bookquerySearch(bookquery,true); //（图书搜索界面），只刷新table显示，默认“所有类型”，注意：只用在初始化时
     }
 }
 

@@ -31,9 +31,6 @@ class Ui_UserManagementWidget
 {
 public:
     QGridLayout *gridLayout_3;
-    QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QTableWidget *tableWidget;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
     QHBoxLayout *horizontalLayout_2;
@@ -47,6 +44,9 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *Button_Search;
     QSpacerItem *horizontalSpacer_2;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QTableWidget *tableWidget;
     QGroupBox *groupBox_2;
     QGridLayout *gridLayout;
     QPushButton *Button_changePri;
@@ -63,22 +63,6 @@ public:
         UserManagementWidget->setMaximumSize(QSize(1195, 736));
         gridLayout_3 = new QGridLayout(UserManagementWidget);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(UserManagementWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(label);
-
-        tableWidget = new QTableWidget(UserManagementWidget);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-
-        verticalLayout->addWidget(tableWidget);
-
-
-        gridLayout_3->addLayout(verticalLayout, 0, 0, 3, 1);
-
         groupBox = new QGroupBox(UserManagementWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setMinimumSize(QSize(290, 130));
@@ -144,7 +128,23 @@ public:
         gridLayout_2->addItem(horizontalSpacer_2, 3, 2, 1, 1);
 
 
-        gridLayout_3->addWidget(groupBox, 0, 1, 1, 1);
+        gridLayout_3->addWidget(groupBox, 0, 0, 1, 1);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label = new QLabel(UserManagementWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(label);
+
+        tableWidget = new QTableWidget(UserManagementWidget);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+
+        verticalLayout->addWidget(tableWidget);
+
+
+        gridLayout_3->addLayout(verticalLayout, 0, 1, 3, 1);
 
         groupBox_2 = new QGroupBox(UserManagementWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
@@ -174,11 +174,11 @@ public:
         gridLayout->addWidget(Button_addUser, 2, 0, 1, 1);
 
 
-        gridLayout_3->addWidget(groupBox_2, 1, 1, 1, 1);
+        gridLayout_3->addWidget(groupBox_2, 1, 0, 1, 1);
 
         verticalSpacer = new QSpacerItem(20, 439, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_3->addItem(verticalSpacer, 2, 1, 1, 1);
+        gridLayout_3->addItem(verticalSpacer, 2, 0, 1, 1);
 
 
         retranslateUi(UserManagementWidget);
@@ -189,11 +189,11 @@ public:
     void retranslateUi(QWidget *UserManagementWidget)
     {
         UserManagementWidget->setWindowTitle(QApplication::translate("UserManagementWidget", "Form", 0));
-        label->setText(QApplication::translate("UserManagementWidget", "<h1>\347\224\250\346\210\267\344\277\241\346\201\257\345\210\227\350\241\250</h1>", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("UserManagementWidget", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257</span></p></body></html>", 0));
         label_userID->setText(QApplication::translate("UserManagementWidget", "\350\257\267\350\276\223\345\205\245\347\224\250\346\210\267\345\255\246\345\217\267\357\274\232", 0));
-        Button_Search->setText(QApplication::translate("UserManagementWidget", "\346\237\245  \350\257\242", 0));
+        Button_Search->setText(QApplication::translate("UserManagementWidget", "\346\237\245\350\257\242/\346\233\264\346\224\271", 0));
+        label->setText(QApplication::translate("UserManagementWidget", "<h1>\347\224\250\346\210\267\344\277\241\346\201\257\345\210\227\350\241\250</h1>", 0));
         groupBox_2->setTitle(QString());
         Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\346\235\203\351\231\220", 0));
         Button_deleteUser->setText(QApplication::translate("UserManagementWidget", "\345\210\240\351\231\244\347\224\250\346\210\267", 0));

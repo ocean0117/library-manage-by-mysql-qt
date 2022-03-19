@@ -232,7 +232,7 @@ public:
     void retranslateUi(QDialog *UserDetailWindow)
     {
         UserDetailWindow->setWindowTitle(QApplication::translate("UserDetailWindow", "Dialog", 0));
-        label->setText(QApplication::translate("UserDetailWindow", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257\346\237\245\350\257\242\344\270\216\351\205\215\347\275\256</span></p></body></html>", 0));
+        label->setText(QApplication::translate("UserDetailWindow", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257\346\237\245\350\257\242/\346\233\264\346\224\271</span></p></body></html>", 0));
         groupBox->setTitle(QString());
         label_userName->setText(QApplication::translate("UserDetailWindow", "\345\247\223    \345\220\215\357\274\232", 0));
         label_password->setText(QApplication::translate("UserDetailWindow", "\345\257\206    \347\240\201\357\274\232", 0));

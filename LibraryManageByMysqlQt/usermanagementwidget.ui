@@ -26,24 +26,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="0" column="0" rowspan="3">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>&lt;h1&gt;用户信息列表&lt;/h1&gt;</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTableWidget" name="tableWidget"/>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="1">
+   <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
@@ -187,7 +170,7 @@
          </size>
         </property>
         <property name="text">
-         <string>查  询</string>
+         <string>查询/更改</string>
         </property>
        </widget>
       </item>
@@ -207,7 +190,24 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="0" column="1" rowspan="3">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;h1&gt;用户信息列表&lt;/h1&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="minimumSize">
       <size>
@@ -285,7 +285,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="2" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
