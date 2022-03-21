@@ -39,8 +39,8 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout;
-    QLabel *label_userID;
-    QLineEdit *LineEdit_userID;
+    QLabel *label_bookID;
+    QLineEdit *LineEdit_bookID;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *Button_Search;
     QSpacerItem *horizontalSpacer_2;
@@ -49,9 +49,9 @@ public:
     QTableWidget *tableWidget;
     QGroupBox *groupBox_2;
     QGridLayout *gridLayout;
-    QPushButton *Button_changePri;
-    QPushButton *Button_deleteUser;
-    QPushButton *Button_addUser;
+    QPushButton *Button_addOneBook;
+    QPushButton *Button_addSomeBooks;
+    QPushButton *Button_deleteBook;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *BookManagementWidget)
@@ -97,17 +97,17 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label_userID = new QLabel(groupBox);
-        label_userID->setObjectName(QStringLiteral("label_userID"));
-        label_userID->setMaximumSize(QSize(16777215, 16777215));
+        label_bookID = new QLabel(groupBox);
+        label_bookID->setObjectName(QStringLiteral("label_bookID"));
+        label_bookID->setMaximumSize(QSize(16777215, 16777215));
 
-        horizontalLayout->addWidget(label_userID);
+        horizontalLayout->addWidget(label_bookID);
 
-        LineEdit_userID = new QLineEdit(groupBox);
-        LineEdit_userID->setObjectName(QStringLiteral("LineEdit_userID"));
-        LineEdit_userID->setMaximumSize(QSize(16777215, 16777215));
+        LineEdit_bookID = new QLineEdit(groupBox);
+        LineEdit_bookID->setObjectName(QStringLiteral("LineEdit_bookID"));
+        LineEdit_bookID->setMaximumSize(QSize(16777215, 16777215));
 
-        horizontalLayout->addWidget(LineEdit_userID);
+        horizontalLayout->addWidget(LineEdit_bookID);
 
 
         gridLayout_2->addLayout(horizontalLayout, 2, 0, 1, 3);
@@ -152,26 +152,26 @@ public:
         groupBox_2->setMaximumSize(QSize(290, 16777215));
         gridLayout = new QGridLayout(groupBox_2);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        Button_changePri = new QPushButton(groupBox_2);
-        Button_changePri->setObjectName(QStringLiteral("Button_changePri"));
-        Button_changePri->setMinimumSize(QSize(150, 30));
-        Button_changePri->setMaximumSize(QSize(150, 30));
+        Button_addOneBook = new QPushButton(groupBox_2);
+        Button_addOneBook->setObjectName(QStringLiteral("Button_addOneBook"));
+        Button_addOneBook->setMinimumSize(QSize(150, 30));
+        Button_addOneBook->setMaximumSize(QSize(150, 30));
 
-        gridLayout->addWidget(Button_changePri, 0, 0, 1, 1);
+        gridLayout->addWidget(Button_addOneBook, 0, 0, 1, 1);
 
-        Button_deleteUser = new QPushButton(groupBox_2);
-        Button_deleteUser->setObjectName(QStringLiteral("Button_deleteUser"));
-        Button_deleteUser->setMinimumSize(QSize(150, 30));
-        Button_deleteUser->setMaximumSize(QSize(150, 30));
+        Button_addSomeBooks = new QPushButton(groupBox_2);
+        Button_addSomeBooks->setObjectName(QStringLiteral("Button_addSomeBooks"));
+        Button_addSomeBooks->setMinimumSize(QSize(150, 30));
+        Button_addSomeBooks->setMaximumSize(QSize(150, 30));
 
-        gridLayout->addWidget(Button_deleteUser, 1, 0, 1, 1);
+        gridLayout->addWidget(Button_addSomeBooks, 1, 0, 1, 1);
 
-        Button_addUser = new QPushButton(groupBox_2);
-        Button_addUser->setObjectName(QStringLiteral("Button_addUser"));
-        Button_addUser->setMinimumSize(QSize(150, 30));
-        Button_addUser->setMaximumSize(QSize(150, 30));
+        Button_deleteBook = new QPushButton(groupBox_2);
+        Button_deleteBook->setObjectName(QStringLiteral("Button_deleteBook"));
+        Button_deleteBook->setMinimumSize(QSize(150, 30));
+        Button_deleteBook->setMaximumSize(QSize(150, 30));
 
-        gridLayout->addWidget(Button_addUser, 2, 0, 1, 1);
+        gridLayout->addWidget(Button_deleteBook, 2, 0, 1, 1);
 
 
         gridLayout_3->addWidget(groupBox_2, 1, 0, 1, 1);
@@ -191,13 +191,13 @@ public:
         BookManagementWidget->setWindowTitle(QApplication::translate("BookManagementWidget", "Form", 0));
         groupBox->setTitle(QString());
         label_2->setText(QApplication::translate("BookManagementWidget", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\344\271\246\347\261\215\350\257\246\347\273\206\344\277\241\346\201\257</span></p></body></html>", 0));
-        label_userID->setText(QApplication::translate("BookManagementWidget", "\350\257\267\350\276\223\345\205\245\344\271\246\347\261\215\347\274\226\345\217\267\357\274\232", 0));
+        label_bookID->setText(QApplication::translate("BookManagementWidget", "\350\257\267\350\276\223\345\205\245\344\271\246\347\261\215\347\274\226\345\217\267\357\274\232", 0));
         Button_Search->setText(QApplication::translate("BookManagementWidget", "\346\237\245\350\257\242/\346\233\264\346\224\271", 0));
         label->setText(QApplication::translate("BookManagementWidget", "<html><head/><body><p><span style=\" font-size:xx-large; font-weight:600;\">\344\271\246\347\261\215\344\277\241\346\201\257\345\210\227\350\241\250</span></p></body></html>", 0));
         groupBox_2->setTitle(QString());
-        Button_changePri->setText(QApplication::translate("BookManagementWidget", "\346\267\273\345\212\240\345\215\225\345\206\214\344\271\246\347\261\215", 0));
-        Button_deleteUser->setText(QApplication::translate("BookManagementWidget", "\346\267\273\345\212\240\345\244\232\345\206\214\344\271\246\347\261\215", 0));
-        Button_addUser->setText(QApplication::translate("BookManagementWidget", "\345\210\240\351\231\244\344\271\246\347\261\215", 0));
+        Button_addOneBook->setText(QApplication::translate("BookManagementWidget", "\346\267\273\345\212\240\345\215\225\345\206\214\344\271\246\347\261\215", 0));
+        Button_addSomeBooks->setText(QApplication::translate("BookManagementWidget", "\346\267\273\345\212\240\345\244\232\345\206\214\344\271\246\347\261\215", 0));
+        Button_deleteBook->setText(QApplication::translate("BookManagementWidget", "\345\210\240\351\231\244\344\271\246\347\261\215", 0));
     } // retranslateUi
 
 };

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     usermanagementwidget=NULL;
     userdetailwnidow=NULL;
     bookmanagementwidget=NULL;
+    bookdetailwindow=NULL;
     people=NULL;
 
     /*** 标题界面UI设计 ***/
@@ -69,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(Signal_bookqueryResult(QVector<Book>,People*)),booksearchwidget,SLOT(SLOT_bookqueryResult(QVector<Book>,People*)));
     connect(booksearchwidget,SIGNAL(Signal_bookBorrow(QVector<QString>)),this,SLOT(SLOT_bookBorrow(QVector<QString>)));
     connect(this,SIGNAL(Signal_loginQuit()),booksearchwidget,SLOT(SLOT_loginQuit()));
-    BookQuery bookquery; bookquerySearch(bookquery,true); //（图书搜索界面），只刷新table显示，默认“所有类型”，注意：只用在初始化时
+    BookQuery bookquery; bookquerySearchUpdate(bookquery,true); //（图书搜索界面），只刷新table显示，默认“所有类型”，注意：只用在初始化时
 }
 
 MainWindow::~MainWindow()
@@ -113,6 +114,12 @@ MainWindow::~MainWindow()
     {
         delete bookmanagementwidget;
         bookmanagementwidget=NULL;
+    }
+    if(bookdetailwindow!=NULL)
+    {
+        bookdetailwindow->close();
+        delete bookdetailwindow;
+        bookdetailwindow=NULL;
     }
 }
 
@@ -218,11 +225,16 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
             connect(usermanagementwidget,SIGNAL(Signal_changeUserPri(QVector<QString>)),this,SLOT(SLOT_changeUserPri(QVector<QString>)));
             connect(usermanagementwidget,SIGNAL(Signal_deleteUser(QVector<QString>)),this,SLOT(SLOT_deleteUser(QVector<QString>)));
             connect(usermanagementwidget,SIGNAL(Signal_addUser()),this,SLOT(SLOT_setWindowRegister()));
-            usermanagementUpdate();//（用户管理界面），更新用户管理结果页面，初始化显示
+            usermanagementUpdate();//（用户管理界面）更新，初始化显示
 
             //（书籍管理界面）
             bookmanagementwidget = new BookManagementWidget();
             ui->tabWidget->addTab(bookmanagementwidget,"书籍管理");
+            connect(this,SIGNAL(Signal_bookmanagementResult(QVector<Book>)),bookmanagementwidget,SLOT(SLOT_bookmanagementResult(QVector<Book>)));
+            connect(bookmanagementwidget,SIGNAL(Signal_SearchBookDetailInfo(QString)),this,SLOT(SLOT_SearchBookDetailInfo(QString)));
+            connect(this,SIGNAL(Signal_enableButton_SearchBookDetail()),bookmanagementwidget,SLOT(SLOT_enableButton_SearchBookDetail()));
+            connect(this,SIGNAL(Signal_disableButton_SearchBookDetail()),bookmanagementwidget,SLOT(SLOT_disableButton_SearchBookDetail()));
+            bookmanagementUpdate();//（书籍管理界面）更新，初始化显示
         }
     }
 }
@@ -331,6 +343,10 @@ void MainWindow::on_Button_quitLogin_clicked()
             ui->tabWidget->removeTab(1);
         }
 
+        if(bookdetailwindow!=NULL)// 判断 (书籍详细信息界面） 是否存在，存在则关闭
+        {
+            bookdetailwindow->close();//自动清理
+        }
         // 默认界面：（图书搜索界面），除了管理元会删除外，在退出整个界面时才删除
         booksearchwidget = new BookSearchWidget();
         ui->tabWidget->addTab(booksearchwidget,"图书搜索");
@@ -338,16 +354,23 @@ void MainWindow::on_Button_quitLogin_clicked()
         connect(this,SIGNAL(Signal_bookqueryResult(QVector<Book>,People*)),booksearchwidget,SLOT(SLOT_bookqueryResult(QVector<Book>,People*)));
         connect(booksearchwidget,SIGNAL(Signal_bookBorrow(QVector<QString>)),this,SLOT(SLOT_bookBorrow(QVector<QString>)));
         connect(this,SIGNAL(Signal_loginQuit()),booksearchwidget,SLOT(SLOT_loginQuit()));
-        BookQuery bookquery; bookquerySearch(bookquery,true); //（图书搜索界面），只刷新table显示，默认“所有类型”，注意：只用在初始化时
+        BookQuery bookquery; bookquerySearchUpdate(bookquery,true); //（图书搜索界面），只刷新table显示，默认“所有类型”，注意：只用在初始化时
     }
 }
 
 void MainWindow::SLOT_bookquerySearch(BookQuery bookquery)
 {
-    bookquerySearch(bookquery, false);
+    bookquerySearchUpdate(bookquery,false);
 }
 
-void MainWindow::bookquerySearch(BookQuery bookquery, bool recover)
+void MainWindow::bookquerySearchUpdate(BookQuery bookquery,bool recover)
+{
+    QVector<Book> Catalog = booksData(bookquery, recover);
+    //返回搜索结果
+    emit Signal_bookqueryResult(Catalog, people);
+}
+
+QVector<Book> MainWindow::booksData(BookQuery bookquery, bool recover)
 {
     QSqlQuery query(db);
     QString queryCommand;
@@ -480,8 +503,7 @@ void MainWindow::bookquerySearch(BookQuery bookquery, bool recover)
         book.type=query.value("type").toString();
         Catalog.append(book);
     }
-    //返回搜索结果
-    emit Signal_bookqueryResult(Catalog,people);
+    return Catalog;
 }
 
 void MainWindow::bookborrowqueryUpdate()
@@ -694,8 +716,9 @@ void MainWindow::SLOT_SearchUserDetailInfo(QString userID)
             userdetailwnidow = new UserDetailWindow();
             userdetailwnidow->setWindowTitle("用户详细信息");
             userdetailwnidow->show();
-            connect(this,SIGNAL(Signal_SearchUserDetailUpdate(UserDetial)),userdetailwnidow,SLOT(SLOT_SearchUserDetailUpdate(UserDetial)));
+
             connect(userdetailwnidow,SIGNAL(Signal_userdetailwindowClosed()),this,SLOT(SLOT_userdetailwindowClosed()));
+            connect(this,SIGNAL(Signal_SearchUserDetailUpdate(UserDetial)),userdetailwnidow,SLOT(SLOT_SearchUserDetailUpdate(UserDetial)));
             connect(userdetailwnidow,SIGNAL(Signal_changeUserInfo(UserDetial)),this,SLOT(SLOT_changeUserInfo(UserDetial)));
             connect(this,SIGNAL(Signal_OnlyUserDetailUpdate(UserDetial)),userdetailwnidow,SLOT(SLOT_OnlyUserDetailUpdate(UserDetial)));
             connect(userdetailwnidow,SIGNAL(Signal_deleteUser(UserDetial)),this,SLOT(SLOT_deleteUser(UserDetial)));
@@ -881,4 +904,146 @@ void MainWindow::SLOT_deleteUser(QVector<QString> deleteuser)
 
     // 更改后，更新（用户管理界面）
     usermanagementUpdate();
+}
+
+void MainWindow::bookmanagementUpdate()
+{
+    BookQuery bookquery;
+    QVector<Book> Catalog = booksData(bookquery, true);
+
+    emit Signal_bookmanagementResult(Catalog);
+}
+
+void MainWindow::SLOT_SearchBookDetailInfo(QString bookID)
+{
+    QSqlQuery query(db);
+    QSqlQuery query0(db);
+    QString queryCommand;
+    BookDetial bookdetial;
+    BorrowUser borrowuser;
+
+    if(people->user_Type == People::MANAGER)
+    {
+        queryCommand="select * from book where book_id='"+bookID+"';";
+        query.exec(queryCommand);
+        if(query.next())
+        {
+            //(书籍详细信息界面)，显示出来
+            bookdetailwindow = new BookDetailWindow();
+            bookdetailwindow->setWindowTitle("书籍详细信息");
+            bookdetailwindow->show();
+
+            connect(bookdetailwindow,SIGNAL(Signal_bookdetailwindowClosed()),this,SLOT(SLOT_bookdetailwindowClosed()));
+            connect(this,SIGNAL(Signal_SearchBookDetailUpdate(BookDetial)),bookdetailwindow,SLOT(SLOT_SearchBookDetailUpdate(BookDetial)));
+            connect(bookdetailwindow,SIGNAL(Signal_changeBookInfo(BookDetial)),this,SLOT(SLOT_changeBookInfo(BookDetial)));
+            connect(this,SIGNAL(Signal_OnlyBookDetailUpdate(BookDetial)),bookdetailwindow,SLOT(SLOT_OnlyBookDetailUpdate(BookDetial)));
+            connect(bookdetailwindow,SIGNAL(Signal_deleteBook(BookDetial)),this,SLOT(SLOT_deleteBook(BookDetial)));
+
+            bookdetial.book.book_id = query.value("book_id").toString();
+            bookdetial.book.name=query.value("name").toString();
+            bookdetial.book.author_name=query.value("author_name").toString();
+            bookdetial.book.price=query.value("price").toDouble();
+            bookdetial.book.num=query.value("num").toInt();
+            bookdetial.book.stock=query.value("stock").toInt();
+            bookdetial.book.publisher=query.value("publisher").toString();
+            bookdetial.book.publish_year=query.value("publish_year").toString();
+            bookdetial.book.type=query.value("type").toString();
+
+            //获取借阅人员
+            queryCommand="select * from borrow where book_id='"+bookdetial.book.book_id+"';";
+            query.exec(queryCommand);
+            //继续查询借阅人员信息
+            while(query.next())
+            {
+                borrowuser.user.user_ID = query.value("user_id").toString();
+                borrowuser.dateBorrow = query.value("borrow_date").toString();
+                borrowuser.dateReturn = query.value("return_date").toString();
+
+                queryCommand="select name from user where id='" + borrowuser.user.user_ID +"';";
+                query0.exec(queryCommand);
+                if(query0.next())
+                {
+                    borrowuser.user.user_Name = query0.value("name").toString();
+                }
+                bookdetial.user.append(borrowuser);
+            }
+
+            emit Signal_SearchBookDetailUpdate(bookdetial);
+            emit Signal_disableButton_SearchBookDetail();
+        }
+        else
+        {
+            QMessageBox::critical(NULL, "Error", "查询失败，可能没有该书籍", QMessageBox::Yes);
+        }
+    }
+}
+
+void MainWindow::SLOT_bookdetailwindowClosed()
+{
+    bookdetailwindowClosed();
+}
+
+void MainWindow::bookdetailwindowClosed()
+{
+    bookdetailwindow->close();
+    delete bookdetailwindow; //防止内存泄漏和野指针
+    bookdetailwindow=NULL;
+    emit Signal_enableButton_SearchBookDetail();
+}
+
+void MainWindow:: SLOT_changeBookInfo(BookDetial bookdetialOld)
+{
+    QSqlQuery query(db);
+    QString queryCommand;
+    if(people->user_Type == People::MANAGER)
+    {
+        //更新数据库
+        queryCommand = QString("update book set name='%1', author_name='%2', price=%3, num=%4, stock=%5, publisher='%6', publish_year='%7', type='%8' where book_id='%9';").arg(bookdetialOld.book.name, bookdetialOld.book.author_name, QString::number(bookdetialOld.book.price, 'f', 2), QString::number(bookdetialOld.book.num, 10), QString::number(bookdetialOld.book.stock, 10), bookdetialOld.book.publisher, bookdetialOld.book.publish_year, bookdetialOld.book.type, bookdetialOld.book.book_id);
+        query.exec(queryCommand);
+
+        //从数据中读取新的值
+        queryCommand = QString("select * from book where book_id='%1';").arg(bookdetialOld.book.book_id);
+        query.exec(queryCommand);
+
+        if(query.next())
+        {
+            bookdetialOld.book.name=query.value("name").toString();
+            bookdetialOld.book.author_name=query.value("author_name").toString();
+            bookdetialOld.book.price=query.value("price").toDouble();
+            bookdetialOld.book.num=query.value("num").toInt();
+            bookdetialOld.book.stock=query.value("stock").toInt();
+            bookdetialOld.book.publisher=query.value("publisher").toString();
+            bookdetialOld.book.publish_year=query.value("publish_year").toString();
+            bookdetialOld.book.type=query.value("type").toString();
+
+            emit Signal_OnlyBookDetailUpdate(bookdetialOld);
+            bookmanagementUpdate();
+            QMessageBox::information(NULL, "Info", "书籍信息已更新", QMessageBox::Yes);
+        }
+    }
+}
+
+void MainWindow::SLOT_deleteBook(BookDetial bookdetialNow)
+{
+    QSqlQuery query(db);
+    QString queryCommand;
+    if(people->user_Type == People::MANAGER)
+    {
+        //删除用户需要用户借阅数量为0
+        queryCommand="select * from borrow where book_id='"+bookdetialNow.book.book_id+"';";
+        query.exec(queryCommand);
+        if(query.size()!=0)
+        {
+            QMessageBox::critical(NULL, "Error", "用户有借阅，不能删除", QMessageBox::Yes);
+        }
+        else
+        {
+            queryCommand = QString("delete from book where book_id='%1';").arg(bookdetialNow.book.book_id);
+            query.exec(queryCommand);
+
+            bookdetailwindowClosed();
+            bookmanagementUpdate();
+            QMessageBox::information(NULL, "Info", "用户删除成功", QMessageBox::Yes);
+        }
+    }
 }

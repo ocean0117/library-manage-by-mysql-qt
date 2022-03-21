@@ -60,5 +60,18 @@ public:
     QVector<BorrowBook> borrowbook;
 };
 
+class BorrowUser {
+public:
+    People user;
+    QString dateBorrow;
+    QString dateReturn;
+};
+
+class BookDetial{
+public:
+    Book book;
+    QVector<BorrowUser> user;
+};
+
 #endif // DATASTRUCTURE
 

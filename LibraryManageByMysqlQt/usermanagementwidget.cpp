@@ -12,20 +12,22 @@ UserManagementWidget::UserManagementWidget(QWidget *parent) :
     numuser=0; // 当前显示的用户数量
 
     /*** tableWidget 表格设计 ***/
+    const QString tableheader[] = {" ","用户学号","用户名","用户密码","借书权限","借阅数目"};
+    int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
+
     rowcount = 0;
     rowcount =rowcount>20?rowcount:20; // rowcount需要根据检索的数量来定，如果检索不到，最小为20
     ui->tableWidget->setRowCount(rowcount);
-    ui->tableWidget->setColumnCount(6);
+    ui->tableWidget->setColumnCount(numheader);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);	//设置为只读模式
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);	//设置为不可选中
 
-    const char* tableheader[] = {" ","用户学号","用户名","用户密码","借书权限","借阅数目"};
     QStringList header;
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < numheader; i++)
             header << tableheader[i];
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->setColumnWidth(0, 80);
-    for (int i = 1; i < 10; i++)
+    for (int i = 1; i < numheader; i++)
     {
         ui->tableWidget->setColumnWidth(i, 147);
     }

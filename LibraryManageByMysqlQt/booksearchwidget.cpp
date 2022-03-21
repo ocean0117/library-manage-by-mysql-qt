@@ -18,7 +18,7 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
     ui->treeWidget->addTopLevelItem(treeitemroot);
     const int num = 13;
     QTreeWidgetItem* leaf[num];
-    const char* booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
+    const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
                             "医学类","工业技术","环境科学类","历史类","地理类"};
     for (int i = 0; i < num; i++)
     {
@@ -37,20 +37,22 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
     }
 
     /*** tableWidget 表格设计 ***/
+    const QString tableheader[] = {"","编号","书名","价格/元","总库存/本","已借出/本","类型","作者","出版社","出版年份"};
+    int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
+
     rowcount = 0;
     rowcount =rowcount>20?rowcount:20; // rowcount需要根据检索的数量来定，如果检索不到，最小为20
     ui->tableWidget->setRowCount(rowcount);
-    ui->tableWidget->setColumnCount(10);
+    ui->tableWidget->setColumnCount(numheader);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);	//设置为只读模式
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);	//设置为不可选中
 
-    const char* tableheader[] = {"","编号","书名","价格/元","总库存/本","已借出/本","类型","作者","出版社","出版年份"};
     QStringList header;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < numheader; i++)
             header << tableheader[i];
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->setColumnWidth(0, 80);
-    for (int i = 1; i < 10; i++)
+    for (int i = 1; i < numheader; i++)
     {
         ui->tableWidget->setColumnWidth(i, 120);
     }

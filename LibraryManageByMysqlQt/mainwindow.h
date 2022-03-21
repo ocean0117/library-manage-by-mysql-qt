@@ -19,6 +19,7 @@
 #include "usermanagementwidget.h"
 #include "userdetailwindow.h"
 #include "bookmanagementwidget.h"
+#include "bookdetailwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -43,13 +44,19 @@ private:
     UserManagementWidget *usermanagementwidget;
     UserDetailWindow *userdetailwnidow;
     BookManagementWidget *bookmanagementwidget;
+    BookDetailWindow *bookdetailwindow;
 
     QSqlDatabase db;
 
-    void bookquerySearch(BookQuery, bool);
+    QVector<Book> booksData(BookQuery, bool);
     void bookborrowqueryUpdate();
     void usermanagementUpdate();
     void userdetailwindowClosed();
+    void bookquerySearchUpdate(BookQuery bookquery,bool recover);
+
+    void bookmanagementUpdate();
+    void bookdetailwindowClosed();
+
 private slots:
     void SLOT_updatetime();
 
@@ -69,23 +76,34 @@ private slots:
     void SLOT_bookReturn(QVector<QString>);
 
     void SLOT_SearchUserDetailInfo(QString);
-
     void SLOT_userdetailwindowClosed();
     void SLOT_changeUserInfo(UserDetial);
     void SLOT_deleteUser(UserDetial);
     void SLOT_changeUserPri(QVector<QString>);
     void SLOT_deleteUser(QVector<QString>);
 
+
+    void SLOT_SearchBookDetailInfo(QString);
+    void SLOT_bookdetailwindowClosed();
+    void SLOT_changeBookInfo(BookDetial);
+    void SLOT_deleteBook(BookDetial);
+
 signals:
     void Signal_bookqueryResult(QVector<Book>,People*);
     void Signal_bookborrowqueryResult(QVector<BorrowBook>,People*);
     void Signal_loginQuit();
+
     void Signal_usermanagementResult(QVector<People>);
     void Signal_SearchUserDetailUpdate(UserDetial);
-    void Signal_OnlyUserDetailUpdate(UserDetial);
-
     void Signal_enableButton_SearchUserDetail();
     void Signal_disableButton_SearchUserDetail();
+    void Signal_OnlyUserDetailUpdate(UserDetial);
+
+    void Signal_bookmanagementResult(QVector<Book>);
+    void Signal_SearchBookDetailUpdate(BookDetial);
+    void Signal_enableButton_SearchBookDetail();
+    void Signal_disableButton_SearchBookDetail();
+    void Signal_OnlyBookDetailUpdate(BookDetial);
 
 private:
     Ui::MainWindow *ui;

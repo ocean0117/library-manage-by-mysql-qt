@@ -8,6 +8,7 @@ INPUT(
 ./debug\usermanagementwidget.o
 ./debug\userdetailwindow.o
 ./debug\bookmanagementwidget.o
+./debug\bookdetailwindow.o
 ./debug\qrc_images.o
 ./debug\moc_mainwindow.o
 ./debug\moc_loginwindow.o
@@ -17,4 +18,5 @@ INPUT(
 ./debug\moc_usermanagementwidget.o
 ./debug\moc_userdetailwindow.o
 ./debug\moc_bookmanagementwidget.o
+./debug\moc_bookdetailwindow.o
 );

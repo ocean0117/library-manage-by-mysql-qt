@@ -14,19 +14,22 @@ UserDetailWindow::UserDetailWindow(QWidget *parent) :
     ui->LineEdit_booknum->setFocusPolicy(Qt::NoFocus);
 
     /*** tableWidget 表格设计 ***/
+    const QString tableheader[] = { "书本编号","书籍名称","借阅日期","归还日期","剩余归还天数" };
+    int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
+
     rowcount = 0;
     rowcount =rowcount>20?rowcount:20; // rowcount需要根据检索的数量来定，如果检索不到，最小为20
     ui->tableWidget->setRowCount(rowcount);
-    ui->tableWidget->setColumnCount(5);
+    ui->tableWidget->setColumnCount(numheader);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);	//设置为只读模式
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);	//设置为不可选中
 
-    const char* tableheader[] = { "书本编号","书籍名称","借阅日期","归还日期","剩余归还天数" };
+
     QStringList header;
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < numheader; i++)
             header << tableheader[i];
     ui->tableWidget->setHorizontalHeaderLabels(header);
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < numheader; i++)
     {
         ui->tableWidget->setColumnWidth(i, 160);
     }

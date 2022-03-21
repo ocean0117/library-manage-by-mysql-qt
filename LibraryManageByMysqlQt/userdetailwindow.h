@@ -30,12 +30,14 @@ signals:
     void Signal_userdetailwindowClosed();
     void Signal_changeUserInfo(UserDetial);
     void Signal_deleteUser(UserDetial);
+
 private slots:
     void SLOT_SearchUserDetailUpdate(UserDetial);
     void on_Button_changeUserInfo_clicked();
 
     void on_Button_deleteUser_clicked();
     void SLOT_OnlyUserDetailUpdate(UserDetial);
+
 
 private:
     Ui::UserDetailWindow *ui;
