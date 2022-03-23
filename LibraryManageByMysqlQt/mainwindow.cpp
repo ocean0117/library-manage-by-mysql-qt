@@ -846,6 +846,10 @@ void MainWindow::SLOT_changeUserInfo(UserDetial userdetialOld)
 
             emit Signal_OnlyUserDetailUpdate(userdetialOld);
             usermanagementUpdate();
+            if(bookdetailwindow!=NULL)
+            {
+                bookdetailwindow->close();
+            }
             QMessageBox::information(NULL, "Info", "用户信息已更新", QMessageBox::Yes);
         }
     }
@@ -881,7 +885,7 @@ void MainWindow::SLOT_changeUserPri(QVector<QString> changepriuser)
     int changeNum=changepriuser.size();
     QSqlQuery query(db);
     QString queryCommand;
-    bool changeuserPri;
+    bool changeuserPri=false;
 
     if(changeNum > 0)
     {
@@ -1086,6 +1090,10 @@ void MainWindow:: SLOT_changeBookInfo(BookDetial bookdetialOld)
 
             emit Signal_OnlyBookDetailUpdate(bookdetialOld);
             bookmanagementUpdate();
+            if(userdetailwindow!=NULL)
+            {
+                userdetailwindow->close();
+            }
             QMessageBox::information(NULL, "Info", "书籍信息已更新", QMessageBox::Yes);
         }
     }
@@ -1111,6 +1119,7 @@ void MainWindow::SLOT_deleteBook(BookDetial bookdetialNow)
 
             bookdetailwindowClosed();
             bookmanagementUpdate();
+
             QMessageBox::information(NULL, "Info", "书籍删除成功", QMessageBox::Yes);
         }
     }

@@ -186,12 +186,13 @@ void AddBookWindow::on_Button_loadFile_clicked()
                     addbook.name = list.at(1).trimmed();
                     addbook.price = list.at(2).toDouble();
                     addbook.num = list.at(3).toInt();
+                    addbook.stock =  addbook.num; //不能注释，否则下满条件语句不能通过。这里赋值，只是为了不修改下面的判断条件，实际没有用
                     addbook.type = list.at(4);
                     addbook.author_name = list.at(5);
                     addbook.publisher = list.at(6);
                     addbook.publish_year = list.at(7);
 
-                    if(numbook <20 && addbook.book_id.contains(QRegExp("^\\d+$")))//book_id很重要，判断为纯数字
+                    if(numbook < 20 && addbook.book_id.contains(QRegExp("^\\d+$")))//book_id很重要，判断为纯数字
                     {
                         if(!(addbook.name=="" || addbook.author_name=="" || addbook.price <=0 ||
                            addbook.num <=0 || addbook.stock <=0 || addbook.publisher== "" ||
