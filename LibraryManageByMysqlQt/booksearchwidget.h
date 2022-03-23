@@ -26,10 +26,10 @@ private slots:
 
 private:
     QTreeWidgetItem *treeitemroot;
+    QTableWidgetItem** tablecheckitem;
     BookQuery bookquery;
     int rowcount;
     int numbook;
-    QTableWidgetItem** tablecheckitem;
 
     void Update();
     void Clear();
@@ -39,7 +39,7 @@ signals:
 
 private slots:
     void SLOT_bookqueryResult(QVector<Book>,People*);
-    void SLOT_loginQuit();
+    void SLOT_booksearchwidgetClearAndUpdate();
     void on_Button_lendBook_clicked();
 
 private:

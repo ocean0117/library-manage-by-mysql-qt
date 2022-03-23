@@ -36,9 +36,9 @@ signals:
     void Signal_deleteBook(QVector<QString>);
 
 private:
+    QTableWidgetItem** tablecheckitem;
     int rowcount;
     int numbook;
-    QTableWidgetItem** tablecheckitem;
 
 private:
     Ui::BookManagementWidget *ui;

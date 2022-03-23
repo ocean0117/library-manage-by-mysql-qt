@@ -25,7 +25,7 @@ void LoginWindow::closeEvent(QCloseEvent *event)
 
 void LoginWindow::on_Button_yes_clicked()
 {
-    if(ui->LineEdit_userID->text().isEmpty() || ui->LineEdit_password->text().isEmpty())
+    if(ui->LineEdit_userID->text().trimmed().isEmpty() || ui->LineEdit_password->text().trimmed().isEmpty())
     {
         QMessageBox::critical(NULL, "Error", "您的信息填写不完整", QMessageBox::Yes);
         return;
@@ -35,8 +35,8 @@ void LoginWindow::on_Button_yes_clicked()
 
     //返回登录信息
     QVector<QString>values;
-    values.append(ui->LineEdit_userID->text());
-    values.append(ui->LineEdit_password->text());
+    values.append(ui->LineEdit_userID->text().trimmed());
+    values.append(ui->LineEdit_password->text().trimmed());
 
     emit Signal_login(isUser, values);
 }

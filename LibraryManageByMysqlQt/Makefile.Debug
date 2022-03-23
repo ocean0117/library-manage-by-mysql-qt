@@ -138,7 +138,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_loginwindow.h ui_registerwindow.h ui_books
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.LibraryManageByMysqlQt.Debug  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile.Debug LibraryManageByMysqlQt.pro
+	@$(QMAKE) -spec win32-g++ -o Makefile.Debug LibraryManageByMysqlQt.pro
 
 qmake_all: FORCE
 
@@ -326,6 +326,15 @@ debug/moc_mainwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidge
 		userdetailwindow.h \
 		bookmanagementwidget.h \
 		bookdetailwindow.h \
+		addbookwindow.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdir.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QTextCodec \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextcodec.h \
 		mainwindow.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp
 
@@ -1393,6 +1402,33 @@ debug/moc_addbookwindow.cpp: D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWi
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qicon.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdir.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QTextCodec \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextcodec.h \
+		datastructure.h \
 		addbookwindow.h
 	D:\Software\Qt\Qt5.5.1\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++ -IF:/03/NormalStudy/TechAcc/Mysql/library-manage-by-mysql-qt/LibraryManageByMysqlQt -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtANGLE -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtSql -ID:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore addbookwindow.h -o debug\moc_addbookwindow.cpp
 
@@ -1600,6 +1636,15 @@ debug/main.o: main.cpp mainwindow.h \
 		userdetailwindow.h \
 		bookmanagementwidget.h \
 		bookdetailwindow.h \
+		addbookwindow.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdir.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QTextCodec \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextcodec.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qapplication.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
@@ -1766,6 +1811,15 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		userdetailwindow.h \
 		bookmanagementwidget.h \
 		bookdetailwindow.h \
+		addbookwindow.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdir.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QTextCodec \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextcodec.h \
 		ui_mainwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
@@ -3235,7 +3289,77 @@ debug/addbookwindow.o: addbookwindow.cpp addbookwindow.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		ui_addbookwindow.h
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMessageBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qicon.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVector \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QFileDialog \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qfiledialog.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qdir.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QTextCodec \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qtextcodec.h \
+		datastructure.h \
+		ui_addbookwindow.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QGridLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QLabel \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpen.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QSpacerItem \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QTableWidget \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtablewidget.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtableview.h \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		D:/Software/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\addbookwindow.o addbookwindow.cpp
 
 debug/qrc_images.o: debug/qrc_images.cpp 

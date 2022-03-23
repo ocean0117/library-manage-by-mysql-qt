@@ -7,7 +7,7 @@ BookManagementWidget::BookManagementWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* 指针初始化，避免野指针 */
+    /********** 类中变量初始化（主要针对指针） **********/
     tablecheckitem=NULL;
     numbook=0; // 当前显示的用户数量
 
@@ -39,7 +39,6 @@ BookManagementWidget::~BookManagementWidget()
 
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
            delete tablecheckitem[i];
@@ -68,7 +67,6 @@ void BookManagementWidget::SLOT_bookmanagementResult(QVector<Book> Catalog)
     //首先清除表内数据，然后根据回传数据以及用户类型显示表格
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
               delete tablecheckitem[i];

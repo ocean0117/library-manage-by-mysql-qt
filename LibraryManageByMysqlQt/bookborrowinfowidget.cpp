@@ -7,13 +7,13 @@ BookBorrowInfoWidget::BookBorrowInfoWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* 指针初始化，避免野指针 */
+    /********** 类中变量初始化（主要针对指针） **********/
     tablecheckitem=NULL;
     numbook=0; // 当前显示的book数量
 
     /*** tableWidget 表格设计 ***/
     const QString tableheader[] = { " ","编号","书名","作者","价格","借阅日期","归还期限","剩余天数"};
-    int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
+    const int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
 
     rowcount = 0;
     rowcount =rowcount>20?rowcount:20; // rowcount需要根据检索的数量来定，如果检索不到，最小为20
@@ -39,7 +39,6 @@ BookBorrowInfoWidget::~BookBorrowInfoWidget()
 
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
            delete tablecheckitem[i];
@@ -78,7 +77,6 @@ void BookBorrowInfoWidget::SLOT_bookborrowqueryResult(QVector<BorrowBook> Catalo
     //首先清除表内数据，然后根据回传数据以及用户类型显示表格
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
               delete tablecheckitem[i];

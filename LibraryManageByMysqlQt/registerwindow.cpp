@@ -25,22 +25,22 @@ void RegisterWindow::closeEvent(QCloseEvent *event)
 
 void RegisterWindow::on_Button_yes_clicked()
 {
-    if(ui->LineEdit_userID->text().isEmpty() || ui->LineEdit_userName->text().isEmpty() || ui->LineEdit_password->text().isEmpty() || ui->LineEdit_password_2->text().isEmpty())
+    if(ui->LineEdit_userID->text().trimmed().isEmpty() || ui->LineEdit_userName->text().trimmed().isEmpty() || ui->LineEdit_password->text().trimmed().isEmpty() || ui->LineEdit_password_2->text().trimmed().isEmpty())
     {
         QMessageBox::critical(NULL, "Error", "您的信息填写不完整", QMessageBox::Yes);
         return;
     }
 
-    if(ui->LineEdit_password->text() != ui->LineEdit_password_2->text())
+    if(ui->LineEdit_password->text().trimmed() != ui->LineEdit_password_2->text().trimmed())
     {
         QMessageBox::critical(NULL, "Error", "两次密码输入不一致", QMessageBox::Yes);
         return;
     }
     //返回注册信息
     QVector<QString> values;
-    values.append(ui->LineEdit_userID->text());
-    values.append(ui->LineEdit_userName->text());
-    values.append(ui->LineEdit_password->text());
+    values.append(ui->LineEdit_userID->text().trimmed());
+    values.append(ui->LineEdit_userName->text().trimmed());
+    values.append(ui->LineEdit_password->text().trimmed());
 
     emit Signal_register(values);
 }

@@ -7,7 +7,7 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* 指针初始化，避免野指针 */
+    /********** 类中变量初始化（主要针对指针） **********/
     tablecheckitem=NULL;
     treeitemroot=NULL;
     numbook=0; //当前显示的book数量
@@ -17,8 +17,6 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
     treeitemroot = new QTreeWidgetItem(QStringList() << "所有类型");
     ui->treeWidget->addTopLevelItem(treeitemroot);
 
-    const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
-                            "医学类","工业技术","环境科学类","历史类","地理类"};
     const int num = sizeof(booktype)/sizeof(booktype[0]);
     QTreeWidgetItem* leaf[num];
 
@@ -30,7 +28,7 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
     ui->treeWidget->expandAll();
     ui->treeWidget->setCurrentItem(treeitemroot); //默认选中 所有类型
 
-    /*** 右侧选项界面设计 ***/
+    /*** 右侧精确检索界面设计 ***/
     ui->comboBox_date1->addItem("");
     ui->comboBox_date2->addItem("");
     for (int i = 0; i<100; i++) {
@@ -59,20 +57,20 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
         ui->tableWidget->setColumnWidth(i, 120);
     }
 
-    /*** 图书借阅按钮 **/
+    /*** 图书借阅按钮 默认隐藏 **/
     ui->Button_lendBook->hide();
 }
 
 BookSearchWidget::~BookSearchWidget()
 {
     delete ui;
-    //防止内存泄漏和野指针
+
+    // 防止内存泄漏和野指针
     delete treeitemroot;
     treeitemroot=NULL;
 
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
            delete tablecheckitem[i];
@@ -88,12 +86,35 @@ void BookSearchWidget::on_Button_Search_clicked()
     Update();
 }
 
+void BookSearchWidget::on_Button_Clear_clicked()
+{
+    Clear();
+    Update();
+}
+
+void BookSearchWidget::on_Button_lendBook_clicked()
+{
+    QVector<QString> bookborrow;
+
+    for (int i = 0; i < numbook; i++)
+    {
+        if (ui->tableWidget->item(i, 0)->checkState() == Qt::Checked)
+        {//如果勾选框被选中
+            if(ui->tableWidget->item(i, 4)->text().toInt() - ui->tableWidget->item(i, 5)->text().toInt() > 0 )
+            {//如果有库存
+                bookborrow.append(ui->tableWidget->item(i, 1)->text());
+            }
+        }
+    }
+
+    emit Signal_bookBorrow(bookborrow);
+}
+
 void BookSearchWidget::SLOT_bookqueryResult(QVector<Book> Catalog,People* people)
 {
     //首先清除表内数据，然后根据回传数据以及用户类型显示表格
     if(tablecheckitem!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
               delete tablecheckitem[i];
@@ -142,32 +163,10 @@ void BookSearchWidget::SLOT_bookqueryResult(QVector<Book> Catalog,People* people
     }
 }
 
-void BookSearchWidget::on_Button_Clear_clicked()
+void BookSearchWidget::SLOT_booksearchwidgetClearAndUpdate()
 {
     Clear();
-}
-
-void BookSearchWidget::on_Button_lendBook_clicked()
-{
-    QVector<QString> bookborrow;
-
-    for (int i = 0; i < numbook; i++)
-    {
-        if (ui->tableWidget->item(i, 0)->checkState() == Qt::Checked)
-        {//如果勾选框被选中
-            if(ui->tableWidget->item(i, 4)->text().toInt() - ui->tableWidget->item(i, 5)->text().toInt() > 0 )
-            {//如果有库存
-                bookborrow.append(ui->tableWidget->item(i, 1)->text());
-            }
-        }
-    }
-
-    emit Signal_bookBorrow(bookborrow);
-}
-
-void BookSearchWidget::SLOT_loginQuit()
-{
-    Clear();
+    Update();
 }
 
 void BookSearchWidget::Update()
@@ -221,7 +220,6 @@ void BookSearchWidget::Clear()
     //清除表内数据，然后
     if(tablecheckitem!=NULL)
     {
-//      qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<numbook;i++)
         {
            delete tablecheckitem[i];
@@ -231,6 +229,5 @@ void BookSearchWidget::Clear()
         numbook=0;
     }
     ui->tableWidget->clearContents(); // clear清除所有，包括表头；clearContents只清除内容，不包含表头
-
-    Update();
 }
+

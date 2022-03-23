@@ -8,6 +8,7 @@ UserDetailWindow::UserDetailWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    /********** 类中变量初始化（主要针对指针） **********/
     numbook=0; // 当前显示的book数量
 
     ui->LineEdit_userID->setFocusPolicy(Qt::NoFocus);//不允许编辑

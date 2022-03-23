@@ -9,8 +9,6 @@ AddBookWindow::AddBookWindow(QWidget *parent) :
 
     fileWindow = new QWidget;
 
-    const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
-                            "医学类","工业技术","环境科学类","历史类","地理类"};
     const int numbooktype = sizeof(booktype)/sizeof(booktype[0]);
 
     ui->comboBox_type->addItem("");
@@ -25,7 +23,7 @@ AddBookWindow::AddBookWindow(QWidget *parent) :
 
     //表格
     const QString tableheader[] = {"编号","书名","价格/元","总库存/本","类型","作者","出版社","出版年份"};
-    int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
+    const int numheader=sizeof(tableheader)/sizeof(tableheader[0]);
 
     numbook=0; //表格中的书本数量
     rowcount = 20; // rowcount每次默认最多添加20
@@ -80,7 +78,6 @@ AddBookWindow::~AddBookWindow()
 
     if(tableComboBoxItem_type!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<rowcount;i++)
         {
            delete tableComboBoxItem_type[i];
@@ -90,7 +87,6 @@ AddBookWindow::~AddBookWindow()
 
         if(tableComboBoxItem_year!=NULL)
         {
-//        qDebug() << "防止内存泄漏和野指针";
             for(int i=0;i<rowcount;i++)
             {
                delete tableComboBoxItem_year[i];
@@ -223,13 +219,10 @@ void AddBookWindow::on_Button_loadFile_clicked()
 
 void AddBookWindow::on_Button_addSomeBooksClear_clicked()
 {
-    const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
-                            "医学类","工业技术","环境科学类","历史类","地理类"};
     const int numbooktype = sizeof(booktype)/sizeof(booktype[0]);
 
     if(tableComboBoxItem_type!=NULL)
     {
-//        qDebug() << "防止内存泄漏和野指针";
         for(int i=0;i<rowcount;i++)
         {
            delete tableComboBoxItem_type[i];
@@ -239,7 +232,6 @@ void AddBookWindow::on_Button_addSomeBooksClear_clicked()
 
         if(tableComboBoxItem_year!=NULL)
         {
-//        qDebug() << "防止内存泄漏和野指针";
             for(int i=0;i<rowcount;i++)
             {
                delete tableComboBoxItem_year[i];

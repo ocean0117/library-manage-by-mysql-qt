@@ -17,18 +17,18 @@ class BookBorrowInfoWidget : public QWidget
 public:
     explicit BookBorrowInfoWidget(QWidget *parent = 0);
     ~BookBorrowInfoWidget();
+
 signals:
     void Signal_bookReturn(QVector<QString>);
 
 private:
+    QTableWidgetItem** tablecheckitem;
     int rowcount;
     int numbook;
-    QTableWidgetItem** tablecheckitem;
 
 private slots:
     void on_Button_allSelectBook_clicked();
     void on_Button_returnBook_clicked();
-
     void SLOT_bookborrowqueryResult(QVector<BorrowBook>,People*);
 
 private:

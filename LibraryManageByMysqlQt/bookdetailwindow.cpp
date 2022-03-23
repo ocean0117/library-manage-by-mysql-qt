@@ -13,9 +13,7 @@ BookDetailWindow::BookDetailWindow(QWidget *parent) :
     ui->LineEdit_out->setFocusPolicy(Qt::NoFocus);
 
     /*** comboBox设计 ***/
-    const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
-                            "医学类","工业技术","环境科学类","历史类","地理类"};
-    int numbooktype=sizeof(booktype)/sizeof(booktype[0]);
+    const int numbooktype=sizeof(booktype)/sizeof(booktype[0]);
 
     ui->comboBox_type->addItem("");
     for (int i = 0; i<numbooktype; i++) {

@@ -73,5 +73,8 @@ public:
     QVector<BorrowUser> user;
 };
 
+const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
+                        "医学类","工业技术","环境科学类","历史类","地理类"};
+
 #endif // DATASTRUCTURE
 
