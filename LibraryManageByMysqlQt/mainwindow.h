@@ -20,6 +20,7 @@
 #include "userdetailwindow.h"
 #include "bookmanagementwidget.h"
 #include "bookdetailwindow.h"
+#include "addbookwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -45,6 +46,7 @@ private:
     UserDetailWindow *userdetailwnidow;
     BookManagementWidget *bookmanagementwidget;
     BookDetailWindow *bookdetailwindow;
+    AddBookWindow *addbookwindow;
 
     QSqlDatabase db;
 
@@ -56,6 +58,7 @@ private:
 
     void bookmanagementUpdate();
     void bookdetailwindowClosed();
+    void addbookwindowClosed();
 
 private slots:
     void SLOT_updatetime();
@@ -87,6 +90,12 @@ private slots:
     void SLOT_bookdetailwindowClosed();
     void SLOT_changeBookInfo(BookDetial);
     void SLOT_deleteBook(BookDetial);
+    void SLOT_addBook();
+    void SLOT_deleteBook(QVector<QString>);
+
+    void SLOT_addbookwindowClosed();
+    void SLOT_addOneBook(Book);
+    void SLOT_addSomeBooks(QVector<Book>);
 
 signals:
     void Signal_bookqueryResult(QVector<Book>,People*);
@@ -104,6 +113,9 @@ signals:
     void Signal_enableButton_SearchBookDetail();
     void Signal_disableButton_SearchBookDetail();
     void Signal_OnlyBookDetailUpdate(BookDetial);
+
+    void Signal_enableButton_addBook();
+    void Signal_disableButton_addBook();
 
 private:
     Ui::MainWindow *ui;

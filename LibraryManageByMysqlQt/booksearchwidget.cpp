@@ -16,10 +16,12 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) :
     ui->treeWidget->setHeaderLabels(QStringList() << "书籍种类");
     treeitemroot = new QTreeWidgetItem(QStringList() << "所有类型");
     ui->treeWidget->addTopLevelItem(treeitemroot);
-    const int num = 13;
-    QTreeWidgetItem* leaf[num];
+
     const QString booktype[] = {"文学类","艺术类","自然科学类","计算机类","思政类","经济类","哲学类","军体类",
                             "医学类","工业技术","环境科学类","历史类","地理类"};
+    const int num = sizeof(booktype)/sizeof(booktype[0]);
+    QTreeWidgetItem* leaf[num];
+
     for (int i = 0; i < num; i++)
     {
         leaf[i] = new QTreeWidgetItem(QStringList() << booktype[i]);

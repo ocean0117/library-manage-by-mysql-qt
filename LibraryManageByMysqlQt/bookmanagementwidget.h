@@ -24,10 +24,16 @@ private slots:
     void SLOT_enableButton_SearchBookDetail();
     void SLOT_disableButton_SearchBookDetail();
 
-    void on_Button_addOneBook_clicked();
+    void SLOT_enableButton_addBook();
+    void SLOT_disableButton_addBook();
+
+    void on_Button_addBook_clicked();
+    void on_Button_deleteBook_clicked();
 
 signals:
     void Signal_SearchBookDetailInfo(QString);
+    void Signal_addBook();
+    void Signal_deleteBook(QVector<QString>);
 
 private:
     int rowcount;

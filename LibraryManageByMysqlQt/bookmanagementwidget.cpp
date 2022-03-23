@@ -108,7 +108,30 @@ void BookManagementWidget::SLOT_disableButton_SearchBookDetail()
     ui->Button_Search->setDisabled(true);
 }
 
-void BookManagementWidget::on_Button_addOneBook_clicked()
+void BookManagementWidget::on_Button_addBook_clicked()
 {
-    qDebug() << "addOneBook";
+    emit Signal_addBook();
+}
+
+void BookManagementWidget::on_Button_deleteBook_clicked()
+{
+    QVector<QString> deletebook;
+    for (int i = 0; i < numbook; i++)
+    {
+        if (ui->tableWidget->item(i, 0)->checkState() == Qt::Checked && ui->tableWidget->item(i, 4)->text().toInt() == 0)
+        {
+            deletebook.append(ui->tableWidget->item(i, 1)->text());
+        }
+    }
+    emit Signal_deleteBook(deletebook);
+}
+
+void BookManagementWidget::SLOT_enableButton_addBook()
+{
+    ui->Button_addBook->setEnabled(true);
+}
+
+void BookManagementWidget::SLOT_disableButton_addBook()
+{
+    ui->Button_addBook->setDisabled(true);
 }

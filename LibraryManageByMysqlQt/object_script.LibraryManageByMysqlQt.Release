@@ -9,6 +9,7 @@ INPUT(
 ./release\userdetailwindow.o
 ./release\bookmanagementwidget.o
 ./release\bookdetailwindow.o
+./release\addbookwindow.o
 ./release\qrc_images.o
 ./release\moc_mainwindow.o
 ./release\moc_loginwindow.o
@@ -19,4 +20,5 @@ INPUT(
 ./release\moc_userdetailwindow.o
 ./release\moc_bookmanagementwidget.o
 ./release\moc_bookdetailwindow.o
+./release\moc_addbookwindow.o
 );

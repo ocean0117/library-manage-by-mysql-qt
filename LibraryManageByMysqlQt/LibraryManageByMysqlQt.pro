@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     usermanagementwidget.cpp \
     userdetailwindow.cpp \
     bookmanagementwidget.cpp \
-    bookdetailwindow.cpp
+    bookdetailwindow.cpp \
+    addbookwindow.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     usermanagementwidget.h \
     userdetailwindow.h \
     bookmanagementwidget.h \
-    bookdetailwindow.h
+    bookdetailwindow.h \
+    addbookwindow.h
 
 FORMS    += mainwindow.ui \
     loginwindow.ui \
@@ -43,7 +45,8 @@ FORMS    += mainwindow.ui \
     usermanagementwidget.ui \
     bookmanagementwidget.ui \
     bookdetailwindow.ui \
-    userdetailwindow.ui
+    userdetailwindow.ui \
+    addbookwindow.ui
 
 RESOURCES += \
     images.qrc

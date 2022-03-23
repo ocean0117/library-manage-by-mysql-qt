@@ -225,45 +225,7 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QPushButton" name="Button_addOneBook">
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>添加单册书籍</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
-       <widget class="QPushButton" name="Button_addSomeBooks">
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>添加多册书籍</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
        <widget class="QPushButton" name="Button_deleteBook">
         <property name="minimumSize">
          <size>
@@ -279,6 +241,25 @@
         </property>
         <property name="text">
          <string>删除书籍</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="Button_addBook">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>添加书籍</string>
         </property>
        </widget>
       </item>

@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     userdetailwnidow=NULL;
     bookmanagementwidget=NULL;
     bookdetailwindow=NULL;
+    addbookwindow = NULL;
     people=NULL;
 
     /*** 标题界面UI设计 ***/
@@ -120,6 +121,12 @@ MainWindow::~MainWindow()
         bookdetailwindow->close();
         delete bookdetailwindow;
         bookdetailwindow=NULL;
+    }
+    if(addbookwindow!=NULL)
+    {
+        addbookwindow->close();
+        delete addbookwindow;
+        addbookwindow=NULL;
     }
 }
 
@@ -234,6 +241,10 @@ void MainWindow::SLOT_login(bool isUser,QVector<QString> values)
             connect(bookmanagementwidget,SIGNAL(Signal_SearchBookDetailInfo(QString)),this,SLOT(SLOT_SearchBookDetailInfo(QString)));
             connect(this,SIGNAL(Signal_enableButton_SearchBookDetail()),bookmanagementwidget,SLOT(SLOT_enableButton_SearchBookDetail()));
             connect(this,SIGNAL(Signal_disableButton_SearchBookDetail()),bookmanagementwidget,SLOT(SLOT_disableButton_SearchBookDetail()));
+            connect(bookmanagementwidget,SIGNAL(Signal_deleteBook(QVector<QString>)),this,SLOT(SLOT_deleteBook(QVector<QString>)));
+            connect(bookmanagementwidget,SIGNAL(Signal_addBook()),this,SLOT(SLOT_addBook()));
+            connect(this,SIGNAL(Signal_enableButton_addBook()),bookmanagementwidget,SLOT(SLOT_enableButton_addBook()));
+            connect(this,SIGNAL(Signal_disableButton_addBook()),bookmanagementwidget,SLOT(SLOT_disableButton_addBook()));
             bookmanagementUpdate();//（书籍管理界面）更新，初始化显示
         }
     }
@@ -970,6 +981,12 @@ void MainWindow::SLOT_SearchBookDetailInfo(QString bookID)
 
             emit Signal_SearchBookDetailUpdate(bookdetial);
             emit Signal_disableButton_SearchBookDetail();
+
+            //关闭（书籍添加页面）。判断
+            if(addbookwindow!=NULL)
+            {
+                addbookwindow->close();
+            }
         }
         else
         {
@@ -1047,3 +1064,170 @@ void MainWindow::SLOT_deleteBook(BookDetial bookdetialNow)
         }
     }
 }
+
+void MainWindow::SLOT_addBook()
+{
+    if(people->user_Type == People::MANAGER)
+    {
+        //显示（注册界面）
+        addbookwindow = new AddBookWindow();
+        addbookwindow->setWindowTitle("书籍添加/更新界面");
+        addbookwindow->show();
+
+        connect(addbookwindow,SIGNAL(Signal_addbookwindowClosed()),this,SLOT(SLOT_addbookwindowClosed()));
+        connect(addbookwindow,SIGNAL(Signal_addOneBook(Book)),this,SLOT(SLOT_addOneBook(Book)));
+        connect(addbookwindow,SIGNAL(Signal_addSomeBooks(QVector<Book>)),this,SLOT(SLOT_addSomeBooks(QVector<Book>)));
+
+        emit Signal_disableButton_addBook();
+        //关闭（书籍详细信息页面）。判断
+        if(bookdetailwindow!=NULL)
+        {
+            bookdetailwindow->close();
+        }
+    }
+
+}
+
+void MainWindow::SLOT_addbookwindowClosed()
+{
+   addbookwindowClosed();
+}
+
+void MainWindow::addbookwindowClosed()
+{
+    addbookwindow->close();
+    delete addbookwindow; //防止内存泄漏和野指针
+    addbookwindow=NULL;
+    emit Signal_enableButton_addBook();
+}
+
+void MainWindow::SLOT_deleteBook(QVector<QString> deletebook)
+{
+    int sucessNum=0;
+    int deleteNum=deletebook.size();
+    QSqlQuery query(db);
+    QString queryCommand;
+
+    if(deleteNum > 0)
+    {
+        for (int i = 0; i < deleteNum; i++)
+        {
+            queryCommand = QString("delete from book where book_id='%1';").arg(deletebook[i]);
+            if(query.exec(queryCommand) == true)
+            {
+                sucessNum++;
+            }
+        }
+        if(sucessNum > 0)
+        {
+            QMessageBox::information(NULL, "Info", "成功删除"+QString::number(sucessNum,10)+"本书籍", QMessageBox::Yes);
+        }
+    }
+    else
+    {
+        QMessageBox::critical(NULL, "Error", "请正确选择需要修改的用户", QMessageBox::Yes);
+    }
+
+    //更改后，判断是否有打开了(书籍详细信息界面)。若打开则关闭
+    if(bookdetailwindow!=NULL)
+    {
+        bookdetailwindow->close();//自动回收
+    }
+
+    // 更改后，更新（书籍管理界面）
+    bookmanagementUpdate();
+}
+
+void MainWindow::SLOT_addOneBook(Book addbook)
+{
+    if(people->user_Type == People::MANAGER)
+    {
+        QSqlQuery query(db);
+        QString queryCommand;
+
+        queryCommand="select * from book where book_id='"+addbook.book_id+"';";
+        query.exec(queryCommand);
+
+        if(query.size()!=0)
+        {
+            //已经存在，更新
+
+            if(addbook.num < (query.value("num").toInt() - query.value("stock").toInt()))//更新后的数量小于借出量时，不进行更新
+            {
+                QMessageBox::critical(NULL, "Error", "请修改书籍数量大于借出量："+QString::number((query.value("num").toInt() - query.value("stock").toInt()),10), QMessageBox::Yes);
+                return ;
+            }
+
+            queryCommand=QString("update book set name='%1', author_name='%2', price=%3, num=%4, stock=%5, publisher='%6', publish_year='%7', type='%8' where book_id='%9'").arg(addbook.name, addbook.author_name, QString::number(addbook.price,'f',2), QString::number(addbook.num,10), QString::number(addbook.stock,10), addbook.publisher, addbook.publish_year, addbook.type, addbook.book_id);
+            query.exec(queryCommand);
+        }
+        else
+        {
+            //新书，添加
+            queryCommand=QString("insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) values ('%1', '%2', '%3', %4, %5, %6, '%7', '%8', '%9');").arg(addbook.book_id, addbook.name, addbook.author_name, QString::number(addbook.price,'f',2), QString::number(addbook.num,10), QString::number(addbook.stock,10), addbook.publisher, addbook.publish_year, addbook.type);
+            query.exec(queryCommand);
+        }
+
+        bookmanagementUpdate();
+        QMessageBox::information(NULL, "Info", "成功添加/更新书籍", QMessageBox::Yes);
+    }
+}
+
+void MainWindow::SLOT_addSomeBooks(QVector<Book> addbooks)
+{
+    if(people->user_Type == People::MANAGER)
+    {
+        QSqlQuery query(db);
+        QString queryCommand;
+        int addSucess=0;
+        int updateSucess=0;
+        int addNum=addbooks.size();
+        for(int i=0;i<addNum;i++)
+        {
+            queryCommand="select * from book where book_id='"+addbooks[i].book_id+"';";
+            query.exec(queryCommand);
+
+            if(query.size()!=0)
+            {
+                //已经存在，更新
+                if(addbooks[i].num < (query.value("num").toInt() - query.value("stock").toInt()))//更新后的数量小于借出量时，不进行更新
+                {
+                    QMessageBox::critical(NULL, "Error", "请修改书籍数量大于借出量："+QString::number((query.value("num").toInt() - query.value("stock").toInt()),10), QMessageBox::Yes);
+                    return ;
+                }
+                queryCommand=QString("update book set name='%1', author_name='%2', price=%3, num=%4, stock=%5, publisher='%6', publish_year='%7', type='%8' where book_id='%9'").arg(addbooks[i].name, addbooks[i].author_name, QString::number(addbooks[i].price,'f',2), QString::number(addbooks[i].num,10), QString::number(addbooks[i].stock,10), addbooks[i].publisher, addbooks[i].publish_year, addbooks[i].type, addbooks[i].book_id);
+                query.exec(queryCommand);
+                updateSucess++;
+            }
+            else
+            {
+                //新书，添加
+                queryCommand=QString("insert into book (book_id, name, author_name, price, num, stock, publisher, publish_year, type) values ('%1', '%2', '%3', %4, %5, %6, '%7', '%8', '%9');").arg(addbooks[i].book_id, addbooks[i].name, addbooks[i].author_name, QString::number(addbooks[i].price,'f',2), QString::number(addbooks[i].num,10), QString::number(addbooks[i].stock,10), addbooks[i].publisher, addbooks[i].publish_year, addbooks[i].type);
+                query.exec(queryCommand);
+                addSucess++;
+            }
+        }
+        bookmanagementUpdate();
+        QMessageBox::information(NULL, "Info", "成功添加书籍"+QString::number(addSucess,10)+"本、更新"+QString::number(updateSucess,10)+"本", QMessageBox::Yes);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
