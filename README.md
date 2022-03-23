@@ -8,12 +8,12 @@
 
 ### 1.2 运行环境介绍、配置及测试
 
-开发平台： Windows / QT5.5.1 / MySQL5.6
-上述QT和Mysql软件的安装可以参考[Mysql安装与基础使用（QT、Matlab）](/archives/4fd3c7f0.html)。
-软件安装后，需要配置Mysql环境如下：
-1.确认Mysql的端口使用`3306`，数据库登录的用户名和密码均设置为`root`，这些是我工程中的基本链接配置；
-2.新建数据库`mydatabase`，命令为：`create database mydatabase;` ；
-3.数据库`mydatabase`下新建四个表格：用户（user）、管理员（manager）、图书（book）、借阅信息（borrow）。命令为：
+开发平台： Windows / QT5.5.1 / MySQL5.6     
+上述QT和Mysql软件的安装可以参考[Mysql安装与基础使用（QT、Matlab）](/archives/4fd3c7f0.html)。   
+软件安装后，需要配置Mysql环境如下：      
+1.确认Mysql的端口使用`3306`，数据库登录的用户名和密码均设置为`root`，这些是我工程中的基本链接配置；     
+2.新建数据库`mydatabase`，命令为：`create database mydatabase;` ；          
+3.数据库`mydatabase`下新建四个表格：用户（user）、管理员（manager）、图书（book）、借阅信息（borrow）。命令为：     
 ```bash
 use mydatabase;
 
@@ -52,13 +52,13 @@ foreign key (user_id) references user(id),
 foreign key (book_id) references book(book_id)
 );
 ```
-上述表中变量的含义（按顺序）：
-①用户：学号（主键），姓名，密码、借阅权限
-②管理员：账号（主键），姓名，密码
-③图书：书籍编号（主键），书名，作者，价格，总库存，剩余量，出版社，出版年份，分类
-④借阅信息：用户学号，书籍编号，借阅时间，归还时间
+上述表中变量的含义（按顺序）：    
+①用户：学号（主键），姓名，密码、借阅权限     
+②管理员：账号（主键），姓名，密码      
+③图书：书籍编号（主键），书名，作者，价格，总库存，剩余量，出版社，出版年份，分类     
+④借阅信息：用户学号，书籍编号，借阅时间，归还时间    
 
-4.为了测试，默认添加1个管理员，3个用户，4本书
+4.为了测试，默认添加1个管理员，3个用户，4本书    
 ```bash
 insert into manager (id , name, password) values ("0", "管理员", "0");
 
@@ -76,5 +76,5 @@ insert into book (book_id, name, author_name, price, num, stock, publisher, publ
 values ("00004", "从格致到科学", "张剑", 66, 8, 8, "中国工人出版社", "2022", "哲学类");
 ```
 
-5.对于exe测试，可以直接打开前面下载的工程文件下的`\EXE\LibraryManageByMysqlQt_boxed.exe`，此时没有出现`无法创建数据库连接`，则环境配置成功。
+5.对于exe测试，可以直接打开前面下载的工程文件下的`\EXE\LibraryManageByMysqlQt_boxed.exe`，此时没有出现`无法创建数据库连接`，则环境配置成功。   
 另外，对于源码，需要在`LibraryManageByMysqlQt\`文件夹下新建`debug`和`release`文件夹，并将工程构建目录选择为LibraryManageByMysqlQt下，编译源码即可运行。
