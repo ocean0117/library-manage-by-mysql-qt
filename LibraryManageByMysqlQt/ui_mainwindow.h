@@ -47,8 +47,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1228, 921);
-        MainWindow->setMinimumSize(QSize(1228, 921));
+        MainWindow->resize(846, 500);
+        MainWindow->setMinimumSize(QSize(800, 485));
         MainWindow->setMaximumSize(QSize(1228, 921));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -58,7 +58,7 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         widget_Title = new QWidget(centralWidget);
         widget_Title->setObjectName(QStringLiteral("widget_Title"));
-        widget_Title->setMinimumSize(QSize(1203, 129));
+        widget_Title->setMinimumSize(QSize(0, 129));
         widget_Title->setMaximumSize(QSize(1203, 129));
         gridLayout = new QGridLayout(widget_Title);
         gridLayout->setSpacing(6);
@@ -109,7 +109,7 @@ public:
 
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setMinimumSize(QSize(1203, 761));
+        tabWidget->setMinimumSize(QSize(0, 320));
         tabWidget->setMaximumSize(QSize(1203, 761));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));

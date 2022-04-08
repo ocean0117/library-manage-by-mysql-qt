@@ -57,8 +57,8 @@ public:
     {
         if (BookManagementWidget->objectName().isEmpty())
             BookManagementWidget->setObjectName(QStringLiteral("BookManagementWidget"));
-        BookManagementWidget->resize(1195, 736);
-        BookManagementWidget->setMinimumSize(QSize(1195, 736));
+        BookManagementWidget->resize(888, 510);
+        BookManagementWidget->setMinimumSize(QSize(778, 300));
         BookManagementWidget->setMaximumSize(QSize(1195, 736));
         gridLayout_3 = new QGridLayout(BookManagementWidget);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));

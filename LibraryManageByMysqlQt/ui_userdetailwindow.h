@@ -68,8 +68,8 @@ public:
     {
         if (UserDetailWindow->objectName().isEmpty())
             UserDetailWindow->setObjectName(QStringLiteral("UserDetailWindow"));
-        UserDetailWindow->resize(950, 921);
-        UserDetailWindow->setMinimumSize(QSize(950, 921));
+        UserDetailWindow->resize(850, 500);
+        UserDetailWindow->setMinimumSize(QSize(850, 440));
         UserDetailWindow->setMaximumSize(QSize(950, 921));
         gridLayout_2 = new QGridLayout(UserDetailWindow);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));

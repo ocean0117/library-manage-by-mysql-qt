@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1228</width>
-    <height>921</height>
+    <width>846</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1228</width>
-    <height>921</height>
+    <width>800</width>
+    <height>485</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -31,7 +31,7 @@
      <widget class="QWidget" name="widget_Title" native="true">
       <property name="minimumSize">
        <size>
-        <width>1203</width>
+        <width>0</width>
         <height>129</height>
        </size>
       </property>
@@ -143,8 +143,8 @@
      <widget class="QTabWidget" name="tabWidget">
       <property name="minimumSize">
        <size>
-        <width>1203</width>
-        <height>761</height>
+        <width>0</width>
+        <height>320</height>
        </size>
       </property>
       <property name="maximumSize">

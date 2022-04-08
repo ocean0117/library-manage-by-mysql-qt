@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>921</height>
+    <width>850</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>950</width>
-    <height>921</height>
+    <width>850</width>
+    <height>440</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -104,7 +104,7 @@
            <widget class="QLineEdit" name="LineEdit_auther">
             <property name="minimumSize">
              <size>
-              <width>171</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -125,7 +125,7 @@
            <widget class="QLineEdit" name="LineEdit_price">
             <property name="minimumSize">
              <size>
-              <width>171</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -174,7 +174,7 @@
            <widget class="QLineEdit" name="LineEdit_publisher">
             <property name="minimumSize">
              <size>
-              <width>171</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -198,7 +198,7 @@
            <widget class="QLineEdit" name="LineEdit_booknum">
             <property name="minimumSize">
              <size>
-              <width>171</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -271,7 +271,7 @@
            <widget class="QLineEdit" name="LineEdit_out">
             <property name="minimumSize">
              <size>
-              <width>171</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>

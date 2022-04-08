@@ -77,8 +77,8 @@ public:
     {
         if (BookDetailWindow->objectName().isEmpty())
             BookDetailWindow->setObjectName(QStringLiteral("BookDetailWindow"));
-        BookDetailWindow->resize(950, 921);
-        BookDetailWindow->setMinimumSize(QSize(950, 921));
+        BookDetailWindow->resize(850, 500);
+        BookDetailWindow->setMinimumSize(QSize(850, 440));
         BookDetailWindow->setMaximumSize(QSize(950, 921));
         gridLayout_2 = new QGridLayout(BookDetailWindow);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
@@ -127,7 +127,7 @@ public:
 
         LineEdit_auther = new QLineEdit(groupBox);
         LineEdit_auther->setObjectName(QStringLiteral("LineEdit_auther"));
-        LineEdit_auther->setMinimumSize(QSize(171, 0));
+        LineEdit_auther->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_2->addWidget(LineEdit_auther);
 
@@ -143,7 +143,7 @@ public:
 
         LineEdit_price = new QLineEdit(groupBox);
         LineEdit_price->setObjectName(QStringLiteral("LineEdit_price"));
-        LineEdit_price->setMinimumSize(QSize(171, 0));
+        LineEdit_price->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_8->addWidget(LineEdit_price);
 
@@ -180,7 +180,7 @@ public:
 
         LineEdit_publisher = new QLineEdit(groupBox);
         LineEdit_publisher->setObjectName(QStringLiteral("LineEdit_publisher"));
-        LineEdit_publisher->setMinimumSize(QSize(171, 0));
+        LineEdit_publisher->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_6->addWidget(LineEdit_publisher);
 
@@ -196,7 +196,7 @@ public:
 
         LineEdit_booknum = new QLineEdit(groupBox);
         LineEdit_booknum->setObjectName(QStringLiteral("LineEdit_booknum"));
-        LineEdit_booknum->setMinimumSize(QSize(171, 0));
+        LineEdit_booknum->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_5->addWidget(LineEdit_booknum);
 
@@ -250,7 +250,7 @@ public:
 
         LineEdit_out = new QLineEdit(groupBox);
         LineEdit_out->setObjectName(QStringLiteral("LineEdit_out"));
-        LineEdit_out->setMinimumSize(QSize(171, 0));
+        LineEdit_out->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_9->addWidget(LineEdit_out);
 

@@ -44,28 +44,28 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *Button_Search;
     QSpacerItem *horizontalSpacer_2;
+    QGroupBox *groupBox_2;
+    QGridLayout *gridLayout;
+    QPushButton *Button_addUser;
+    QPushButton *Button_changePri;
+    QPushButton *Button_deleteUser;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTableWidget *tableWidget;
-    QGroupBox *groupBox_2;
-    QGridLayout *gridLayout;
-    QPushButton *Button_changePri;
-    QPushButton *Button_deleteUser;
-    QPushButton *Button_addUser;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *UserManagementWidget)
     {
         if (UserManagementWidget->objectName().isEmpty())
             UserManagementWidget->setObjectName(QStringLiteral("UserManagementWidget"));
-        UserManagementWidget->resize(1195, 736);
-        UserManagementWidget->setMinimumSize(QSize(1195, 736));
+        UserManagementWidget->resize(864, 500);
+        UserManagementWidget->setMinimumSize(QSize(778, 300));
         UserManagementWidget->setMaximumSize(QSize(1195, 736));
         gridLayout_3 = new QGridLayout(UserManagementWidget);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         groupBox = new QGroupBox(UserManagementWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setMinimumSize(QSize(290, 130));
+        groupBox->setMinimumSize(QSize(0, 130));
         groupBox->setMaximumSize(QSize(290, 130));
         groupBox->setSizeIncrement(QSize(0, 0));
         gridLayout_2 = new QGridLayout(groupBox);
@@ -130,6 +130,36 @@ public:
 
         gridLayout_3->addWidget(groupBox, 0, 0, 1, 1);
 
+        groupBox_2 = new QGroupBox(UserManagementWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setMinimumSize(QSize(0, 0));
+        groupBox_2->setMaximumSize(QSize(290, 16777215));
+        gridLayout = new QGridLayout(groupBox_2);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        Button_addUser = new QPushButton(groupBox_2);
+        Button_addUser->setObjectName(QStringLiteral("Button_addUser"));
+        Button_addUser->setMinimumSize(QSize(150, 30));
+        Button_addUser->setMaximumSize(QSize(150, 30));
+
+        gridLayout->addWidget(Button_addUser, 2, 0, 1, 1);
+
+        Button_changePri = new QPushButton(groupBox_2);
+        Button_changePri->setObjectName(QStringLiteral("Button_changePri"));
+        Button_changePri->setMinimumSize(QSize(150, 30));
+        Button_changePri->setMaximumSize(QSize(150, 30));
+
+        gridLayout->addWidget(Button_changePri, 0, 0, 1, 1);
+
+        Button_deleteUser = new QPushButton(groupBox_2);
+        Button_deleteUser->setObjectName(QStringLiteral("Button_deleteUser"));
+        Button_deleteUser->setMinimumSize(QSize(150, 30));
+        Button_deleteUser->setMaximumSize(QSize(150, 30));
+
+        gridLayout->addWidget(Button_deleteUser, 1, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(groupBox_2, 1, 0, 1, 1);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(UserManagementWidget);
@@ -146,40 +176,13 @@ public:
 
         gridLayout_3->addLayout(verticalLayout, 0, 1, 3, 1);
 
-        groupBox_2 = new QGroupBox(UserManagementWidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMinimumSize(QSize(290, 0));
-        groupBox_2->setMaximumSize(QSize(290, 16777215));
-        gridLayout = new QGridLayout(groupBox_2);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        Button_changePri = new QPushButton(groupBox_2);
-        Button_changePri->setObjectName(QStringLiteral("Button_changePri"));
-        Button_changePri->setMinimumSize(QSize(150, 30));
-        Button_changePri->setMaximumSize(QSize(150, 30));
-
-        gridLayout->addWidget(Button_changePri, 0, 0, 1, 1);
-
-        Button_deleteUser = new QPushButton(groupBox_2);
-        Button_deleteUser->setObjectName(QStringLiteral("Button_deleteUser"));
-        Button_deleteUser->setMinimumSize(QSize(150, 30));
-        Button_deleteUser->setMaximumSize(QSize(150, 30));
-
-        gridLayout->addWidget(Button_deleteUser, 1, 0, 1, 1);
-
-        Button_addUser = new QPushButton(groupBox_2);
-        Button_addUser->setObjectName(QStringLiteral("Button_addUser"));
-        Button_addUser->setMinimumSize(QSize(150, 30));
-        Button_addUser->setMaximumSize(QSize(150, 30));
-
-        gridLayout->addWidget(Button_addUser, 2, 0, 1, 1);
-
-
-        gridLayout_3->addWidget(groupBox_2, 1, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 439, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(287, 203, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_3->addItem(verticalSpacer, 2, 0, 1, 1);
 
+        groupBox->raise();
+        groupBox_2->raise();
+        tableWidget->raise();
 
         retranslateUi(UserManagementWidget);
 
@@ -193,11 +196,11 @@ public:
         label_2->setText(QApplication::translate("UserManagementWidget", "<html><head/><body><p><span style=\" font-size:x-large; font-weight:600;\">\347\224\250\346\210\267\350\257\246\347\273\206\344\277\241\346\201\257</span></p></body></html>", 0));
         label_userID->setText(QApplication::translate("UserManagementWidget", "\350\257\267\350\276\223\345\205\245\347\224\250\346\210\267\345\255\246\345\217\267\357\274\232", 0));
         Button_Search->setText(QApplication::translate("UserManagementWidget", "\346\237\245\350\257\242/\346\233\264\346\224\271", 0));
-        label->setText(QApplication::translate("UserManagementWidget", "<h1>\347\224\250\346\210\267\344\277\241\346\201\257\345\210\227\350\241\250</h1>", 0));
         groupBox_2->setTitle(QString());
+        Button_addUser->setText(QApplication::translate("UserManagementWidget", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
         Button_changePri->setText(QApplication::translate("UserManagementWidget", "\346\233\264\346\224\271\347\224\250\346\210\267\346\235\203\351\231\220", 0));
         Button_deleteUser->setText(QApplication::translate("UserManagementWidget", "\345\210\240\351\231\244\347\224\250\346\210\267", 0));
-        Button_addUser->setText(QApplication::translate("UserManagementWidget", "\346\267\273\345\212\240\346\226\260\347\224\250\346\210\267", 0));
+        label->setText(QApplication::translate("UserManagementWidget", "<h1>\347\224\250\346\210\267\344\277\241\346\201\257\345\210\227\350\241\250</h1>", 0));
     } // retranslateUi
 
 };

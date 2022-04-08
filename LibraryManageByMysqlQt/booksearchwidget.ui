@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1195</width>
-    <height>736</height>
+    <width>1032</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1195</width>
-    <height>736</height>
+    <width>778</width>
+    <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -33,7 +33,7 @@
     <widget class="QTreeWidget" name="treeWidget">
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>100</width>
        <height>0</height>
       </size>
      </property>
@@ -58,7 +58,7 @@
         <widget class="QWidget" name="widget" native="true">
          <property name="minimumSize">
           <size>
-           <width>800</width>
+           <width>0</width>
            <height>140</height>
           </size>
          </property>
@@ -113,7 +113,7 @@
                  <widget class="QComboBox" name="comboBox_date1">
                   <property name="minimumSize">
                    <size>
-                    <width>161</width>
+                    <width>0</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -151,7 +151,7 @@
                  <widget class="QComboBox" name="comboBox_date2">
                   <property name="minimumSize">
                    <size>
-                    <width>160</width>
+                    <width>0</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -244,56 +244,46 @@
            <height>140</height>
           </size>
          </property>
-         <widget class="QPushButton" name="Button_Search">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>50</y>
-            <width>120</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>开始检索</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="Button_Clear">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>100</y>
-            <width>120</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>恢复默认</string>
-          </property>
-         </widget>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="Button_Search">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>开始检索</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="Button_Clear">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>恢复默认</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>

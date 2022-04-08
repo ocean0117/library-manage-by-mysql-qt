@@ -37,8 +37,8 @@ public:
     {
         if (BookBorrowInfoWidget->objectName().isEmpty())
             BookBorrowInfoWidget->setObjectName(QStringLiteral("BookBorrowInfoWidget"));
-        BookBorrowInfoWidget->resize(1195, 736);
-        BookBorrowInfoWidget->setMinimumSize(QSize(1195, 736));
+        BookBorrowInfoWidget->resize(956, 584);
+        BookBorrowInfoWidget->setMinimumSize(QSize(778, 300));
         BookBorrowInfoWidget->setMaximumSize(QSize(1195, 736));
         gridLayout = new QGridLayout(BookBorrowInfoWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));

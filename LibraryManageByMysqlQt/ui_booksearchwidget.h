@@ -62,6 +62,7 @@ public:
     QLineEdit *LineEdit_publisher;
     QCheckBox *checkBox_haveStock;
     QWidget *widget_2;
+    QGridLayout *gridLayout_6;
     QPushButton *Button_Search;
     QPushButton *Button_Clear;
     QTableWidget *tableWidget;
@@ -73,8 +74,8 @@ public:
     {
         if (BookSearchWidget->objectName().isEmpty())
             BookSearchWidget->setObjectName(QStringLiteral("BookSearchWidget"));
-        BookSearchWidget->resize(1195, 736);
-        BookSearchWidget->setMinimumSize(QSize(1195, 736));
+        BookSearchWidget->resize(1032, 663);
+        BookSearchWidget->setMinimumSize(QSize(778, 300));
         BookSearchWidget->setMaximumSize(QSize(1195, 736));
         BookSearchWidget->setAutoFillBackground(false);
         gridLayout_2 = new QGridLayout(BookSearchWidget);
@@ -84,7 +85,7 @@ public:
         __qtreewidgetitem->setText(0, QStringLiteral("1"));
         treeWidget->setHeaderItem(__qtreewidgetitem);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        treeWidget->setMinimumSize(QSize(200, 0));
+        treeWidget->setMinimumSize(QSize(100, 0));
         treeWidget->setMaximumSize(QSize(200, 16777215));
 
         gridLayout_2->addWidget(treeWidget, 0, 0, 1, 1);
@@ -95,7 +96,7 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         widget = new QWidget(BookSearchWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(800, 140));
+        widget->setMinimumSize(QSize(0, 140));
         widget->setMaximumSize(QSize(800, 140));
         gridLayout_5 = new QGridLayout(widget);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
@@ -129,7 +130,7 @@ public:
 
         comboBox_date1 = new QComboBox(widget);
         comboBox_date1->setObjectName(QStringLiteral("comboBox_date1"));
-        comboBox_date1->setMinimumSize(QSize(161, 0));
+        comboBox_date1->setMinimumSize(QSize(0, 0));
 
         gridLayout->addWidget(comboBox_date1, 1, 1, 1, 1);
 
@@ -160,7 +161,7 @@ public:
 
         comboBox_date2 = new QComboBox(widget);
         comboBox_date2->setObjectName(QStringLiteral("comboBox_date2"));
-        comboBox_date2->setMinimumSize(QSize(160, 0));
+        comboBox_date2->setMinimumSize(QSize(0, 0));
         comboBox_date2->setMaximumSize(QSize(199, 16777215));
 
         gridLayout_3->addWidget(comboBox_date2, 1, 1, 1, 1);
@@ -228,16 +229,22 @@ public:
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setMinimumSize(QSize(0, 140));
         widget_2->setMaximumSize(QSize(16777215, 140));
+        gridLayout_6 = new QGridLayout(widget_2);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         Button_Search = new QPushButton(widget_2);
         Button_Search->setObjectName(QStringLiteral("Button_Search"));
-        Button_Search->setGeometry(QRect(20, 50, 120, 30));
         Button_Search->setMinimumSize(QSize(120, 30));
         Button_Search->setMaximumSize(QSize(120, 30));
+
+        gridLayout_6->addWidget(Button_Search, 0, 0, 1, 1);
+
         Button_Clear = new QPushButton(widget_2);
         Button_Clear->setObjectName(QStringLiteral("Button_Clear"));
-        Button_Clear->setGeometry(QRect(20, 100, 120, 30));
         Button_Clear->setMinimumSize(QSize(120, 30));
         Button_Clear->setMaximumSize(QSize(120, 30));
+
+        gridLayout_6->addWidget(Button_Clear, 1, 0, 1, 1);
+
 
         horizontalLayout->addWidget(widget_2);
 

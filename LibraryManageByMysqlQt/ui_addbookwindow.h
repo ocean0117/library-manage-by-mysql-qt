@@ -92,8 +92,8 @@ public:
     {
         if (AddBookWindow->objectName().isEmpty())
             AddBookWindow->setObjectName(QStringLiteral("AddBookWindow"));
-        AddBookWindow->resize(950, 921);
-        AddBookWindow->setMinimumSize(QSize(950, 921));
+        AddBookWindow->resize(850, 500);
+        AddBookWindow->setMinimumSize(QSize(850, 440));
         AddBookWindow->setMaximumSize(QSize(950, 921));
         gridLayout_3 = new QGridLayout(AddBookWindow);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
